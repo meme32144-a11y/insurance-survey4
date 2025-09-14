@@ -7,252 +7,210 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        // API KEY is a blank string because Canvas will provide it in the fetch call.
-        const API_KEY = "AIzaSyDIsS_NQf5UzL7E4ylbiJogrAoBPqC0u80";
-    </script>
     <style>
         /* Thai Insurance Survey Application Styles */
         :root {
-          /* Theme Colors */
-          --primary-color: #2c3e50;      /* Dark Slate Blue */
-          --accent-color: #27ae60;       /* Emerald Green */
-          --light-blue: #3498db;        /* Peter River Blue */
-          --success-green: #2ecc71;     /* Jade Green */
-          --warning-orange: #f39c12;    /* Orange */
-          --danger-red: #e74c3c;        /* Alizarin Red */
-          --light-gray: #ecf0f1;        /* Clouds White */
-          --medium-gray: #bdc3c7;      /* Silver */
-          --dark-gray: #34495e;        /* Wet Asphalt */
-          --white: #ffffff;
-          --bg-gradient: linear-gradient(135deg, var(--light-gray) 0%, var(--medium-gray) 100%);
-          --shadow: 0 4px 20px rgba(0,0,0,0.08);
-          --btn-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
-          --hover-btn-shadow: 0 6px 20px rgba(44, 62, 80, 0.4);
-          --border-radius: 12px;
-          --transition: all 0.3s ease-in-out;
+            /* Theme Colors */
+            --primary-color: #2c3e50;      /* Dark Slate Blue */
+            --accent-color: #27ae60;       /* Emerald Green */
+            --light-blue: #3498db;        /* Peter River Blue */
+            --success-green: #2ecc71;     /* Jade Green */
+            --warning-orange: #f39c12;    /* Orange */
+            --danger-red: #e74c3c;        /* Alizarin Red */
+            --light-gray: #ecf0f1;        /* Clouds White */
+            --medium-gray: #bdc3c7;      /* Silver */
+            --dark-gray: #34495e;        /* Wet Asphalt */
+            --white: #ffffff;
+            --bg-gradient: linear-gradient(135deg, var(--light-gray) 0%, var(--medium-gray) 100%);
+            --shadow: 0 4px 20px rgba(0,0,0,0.08);
+            --btn-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
+            --hover-btn-shadow: 0 6px 20px rgba(44, 62, 80, 0.4);
+            --border-radius: 12px;
+            --transition: all 0.3s ease-in-out;
         }
 
         /* Base Styles */
         * {
-          box-sizing: border-box;
+            box-sizing: border-box;
         }
 
         body {
-          font-family: 'Sarabun', sans-serif;
-          background: var(--bg-gradient);
-          color: var(--primary-color);
-          line-height: 1.6;
-          padding-bottom: 80px; /* Space for fixed navigation */
-        }
-
-        .container-fluid {
-          padding-left: 0;
-          padding-right: 0;
+            font-family: 'Sarabun', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--primary-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
 
         .container {
-          max-width: 960px;
+            max-width: 900px;
+            margin: auto;
         }
 
-        /* Header */
         .survey-header {
-          background: var(--primary-color);
-          background: linear-gradient(135deg, var(--primary-color), var(--dark-gray));
-          color: var(--white);
-          border-bottom-left-radius: var(--border-radius);
-          border-bottom-right-radius: var(--border-radius);
-          box-shadow: var(--shadow);
+            background: var(--primary-color);
+            color: var(--white);
+            border-bottom: 5px solid var(--accent-color);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
-        .survey-header h1 {
-          font-weight: 700;
-        }
-
-        .survey-header .lead {
-          font-weight: 300;
-        }
-
-        /* Card-like Section */
         .survey-card {
-          background: var(--white);
-          padding: 2.5rem;
-          border-radius: var(--border-radius);
-          box-shadow: var(--shadow);
-          margin-bottom: 2rem;
-          transition: var(--transition);
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-top: -60px;
         }
 
-        /* Progress Bar */
-        .progress-section {
-          background: var(--white);
-          padding: 1rem 1.5rem;
-          border-radius: var(--border-radius);
-          box-shadow: var(--shadow);
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 0.5rem;
         }
 
-        .progress-bar {
-          background-color: var(--accent-color);
-          transition: width 0.6s ease;
-        }
-
-        /* Form Elements */
         .form-label {
-          font-weight: 600;
-          color: var(--dark-gray);
-          margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: var(--primary-color);
         }
 
         .form-control, .form-select {
-          border-radius: var(--border-radius);
-          border-color: var(--light-gray);
-          box-shadow: none !important;
-          padding: 0.75rem 1rem;
-          transition: var(--transition);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--medium-gray);
+            padding: 0.75rem 1rem;
+            transition: border-color var(--transition), box-shadow var(--transition);
         }
 
         .form-control:focus, .form-select:focus {
-          border-color: var(--accent-color);
-        }
-
-        .form-check-label {
-          cursor: pointer;
+            border-color: var(--light-blue);
+            box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
         }
 
         .form-check-input:checked {
-          background-color: var(--accent-color);
-          border-color: var(--accent-color);
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
         }
 
-        .form-check {
-          padding-left: 2.5em;
-        }
-
-        .form-check-input {
-          height: 1.25em;
-          width: 1.25em;
-          margin-top: 0.25em;
-        }
-
-        /* Buttons */
         .btn-primary {
-          background: var(--primary-color);
-          border-color: var(--primary-color);
-          font-weight: 500;
-          padding: 0.75rem 2rem;
-          border-radius: var(--border-radius);
-          box-shadow: var(--btn-shadow);
-          transition: var(--transition);
-        }
-
-        .btn-primary:hover {
-          background: var(--dark-gray);
-          border-color: var(--dark-gray);
-          transform: translateY(-2px);
-          box-shadow: var(--hover-btn-shadow);
-        }
-
-        .btn-success {
-          background: linear-gradient(135deg, var(--success-green), var(--accent-color));
-          color: var(--white);
-          box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
-        }
-
-        .btn-success:hover {
-          background: linear-gradient(135deg, var(--accent-color), var(--success-green));
-          transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
-        }
-
-        .btn-gemini {
-            background-color: #4285F4;
-            color: white;
+            background-color: var(--primary-color);
             border: none;
-            font-weight: 500;
-            padding: 0.75rem 2rem;
             border-radius: var(--border-radius);
+            padding: 0.75rem 2rem;
+            font-weight: 600;
             box-shadow: var(--btn-shadow);
             transition: var(--transition);
         }
-        .btn-gemini:hover {
-            background-color: #357ae8;
+
+        .btn-primary:hover {
+            background-color: var(--dark-gray);
             transform: translateY(-2px);
             box-shadow: var(--hover-btn-shadow);
         }
 
+        .btn-success {
+            background: linear-gradient(135deg, var(--success-green), var(--accent-color));
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        .btn-success:hover {
+            background: linear-gradient(135deg, var(--accent-color), var(--success-green));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+        }
+
         /* Conditional Sections */
         .conditional-section {
-          background: #fdf6e3;
-          padding: 1.5rem;
-          border-radius: var(--border-radius);
-          border: 2px solid #f9e2ae;
-          margin-top: 1.5rem;
-          transition: var(--transition);
+            background: #fdf6e3;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 2px solid #f9e2ae;
+            margin-top: 1.5rem;
+            transition: var(--transition);
         }
 
         /* Summary Section */
         .summary-item {
-          padding: 1rem 1.5rem;
-          background: #f8f9fa;
-          border-radius: var(--border-radius);
-          border-left: 5px solid var(--light-blue);
-          margin-bottom: 1rem;
+            padding: 1rem 1.5rem;
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            border-left: 5px solid var(--light-blue);
+            margin-bottom: 1rem;
         }
 
         .summary-item strong {
-          color: var(--primary-color);
-          font-weight: 600;
-        }
-
-        #recommendation-section {
-            background-color: #e8f5e9;
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            margin-top: 2rem;
-            border: 1px solid #c8e6c9;
-            text-align: left;
-        }
-        
-        #recommendation-section h4 {
-            color: #1b5e20;
-            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 600;
         }
 
         /* Navigation */
         #navigation {
-          position: sticky;
-          bottom: 0;
-          background: var(--white);
-          padding: 1.5rem;
-          border-radius: var(--border-radius) var(--border-radius) 0 0;
-          box-shadow: 0 -4px 15px rgba(0,0,0,0.05);
-          z-index: 1000;
+            position: sticky;
+            bottom: 0;
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.05);
+            z-index: 100;
         }
-        
-        /* Utility Classes for display */
-        .d-none { display: none !important; }
 
-        /* Custom Modal */
-        .modal-overlay {
+        .progress-section {
+            padding: 1rem 0;
+        }
+
+        .progress-bar {
+            background-color: var(--accent-color);
+            border-radius: 12px;
+            transition: width 0.4s ease;
+        }
+
+        .progress-label {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        .modal {
+            display: none;
             position: fixed;
-            top: 0;
+            z-index: 1050;
             left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+            padding-top: 60px;
         }
         .modal-content {
-            background-color: var(--white);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .modal-content h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -270,765 +228,713 @@
 
         <div class="container">
             <div class="progress-section mb-4">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span id="progress-text" class="text-muted small">ส่วนที่ 1 จาก 7: ข้อมูลส่วนตัว</span>
+                <div class="progress" style="height: 12px; border-radius: 12px; background-color: #e0e0e0;">
+                    <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <div class="progress" style="height: 10px;">
-                    <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 14.28%;" aria-valuenow="14.28" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="d-flex justify-content-between mt-2">
+                    <span id="progressLabel" class="progress-label">0%</span>
+                    <span id="pageCounter" class="progress-label">หน้า 1/9</span>
                 </div>
             </div>
 
-            <div id="survey-form">
-                <!-- ================== ส่วนที่ 1: ข้อมูลส่วนตัว ================== -->
-                <div id="section-1" class="survey-card">
-                    <h2 class="h4 mb-4 text-center">ส่วนที่ 1: ข้อมูลส่วนตัว</h2>
-                    <div class="mb-3">
-                        <label for="name" class="form-label">ชื่อ-นามสกุล</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="ชื่อ-นามสกุลของคุณ" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="age" class="form-label">อายุ</label>
-                        <input type="number" class="form-control" id="age" name="age" placeholder="อายุ" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="career" class="form-label">อาชีพ</label>
-                        <input type="text" class="form-control" id="career" name="career" placeholder="เช่น พนักงานบริษัท, นักธุรกิจ" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="income" class="form-label">รายได้ต่อเดือน</label>
-                        <div class="input-group">
-                            <input type="number" class="form-control" id="income" name="income" placeholder="ตัวเลขเท่านั้น" required>
-                            <span class="input-group-text">บาท</span>
+            <div class="survey-card">
+                <form id="surveyForm">
+                    <!-- Section 1: ข้อมูลส่วนตัว -->
+                    <div id="section-1" class="survey-section">
+                        <h2>1. ข้อมูลส่วนตัว</h2>
+                        <div class="mb-3">
+                            <label for="full_name" class="form-label">ชื่อ-นามสกุล</label>
+                            <input type="text" class="form-control" id="full_name" name="full_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="age" class="form-label">อายุ (ปี)</label>
+                            <input type="number" class="form-control" id="age" name="age" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="occupation" class="form-label">อาชีพ</label>
+                            <input type="text" class="form-control" id="occupation" name="occupation">
+                        </div>
+                        <div class="mb-3">
+                            <label for="monthly_income" class="form-label">รายได้ต่อเดือนโดยเฉลี่ย (บาท)</label>
+                            <input type="number" class="form-control" id="monthly_income" name="monthly_income">
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">คุณมีรายได้เสริมอื่น ๆ นอกเหนือจากงานหลักหรือไม่?</label>
-                        <div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="additional_income" id="add_income_yes" value="มี">
-                                <label class="form-check-label" for="add_income_yes">มี</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="additional_income" id="add_income_no" value="ไม่มี" checked>
-                                <label class="form-check-label" for="add_income_no">ไม่มี</label>
-                            </div>
-                        </div>
-                        <div id="additional_income_details" class="conditional-section d-none">
-                            <label for="additional_income_text" class="form-label">ระบุรายละเอียด</label>
-                            <textarea class="form-control" id="additional_income_text" name="additional_income_details" rows="2" placeholder="เช่น รายได้จากการขายของออนไลน์, ฟรีแลนซ์"></textarea>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- ================== ส่วนที่ 2: สถานะครอบครัว ================== -->
-                <div id="section-2" class="survey-card d-none">
-                    <h2 class="h4 mb-4 text-center">ส่วนที่ 2: สถานะครอบครัว</h2>
-                    <div class="mb-3">
-                        <label class="form-label">สถานภาพสมรส</label>
-                        <div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="marital_status" id="single" value="โสด" checked>
-                                <label class="form-check-label" for="single">โสด</label>
+                    <!-- Section 2: ข้อมูลการเงิน -->
+                    <div id="section-2" class="survey-section d-none">
+                        <h2>2. ข้อมูลการเงิน</h2>
+                        <div class="mb-3">
+                            <label class="form-label">คุณมีประกันภัยอยู่แล้วหรือไม่?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="current_insurance" id="ins_no" value="ไม่มี" required>
+                                <label class="form-check-label" for="ins_no">ไม่มี</label>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="marital_status" id="married" value="สมรส">
-                                <label class="form-check-label" for="married">สมรส</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="marital_status" id="divorced" value="หย่าร้าง">
-                                <label class="form-check-label" for="divorced">หย่าร้าง</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">คุณมีบุตรกี่คน?</label>
-                        <select class="form-select" id="children_count" name="children_count">
-                            <option value="ไม่มี">ไม่มี</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4 หรือมากกว่า</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">คุณมีภาระที่ต้องดูแลใครบ้าง?</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="dependents[]" value="บิดามารดา" id="dep-parents">
-                            <label class="form-check-label" for="dep-parents">บิดามารดา</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="dependents[]" value="บุตร" id="dep-children">
-                            <label class="form-check-label" for="dep-children">บุตร</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="dependents[]" value="คู่สมรส" id="dep-spouse">
-                            <label class="form-check-label" for="dep-spouse">คู่สมรส</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="dependents[]" value="อื่นๆ" id="dep-other">
-                            <label class="form-check-label" for="dep-other">อื่นๆ (ระบุ)</label>
-                        </div>
-                        <div id="other_dependents" class="conditional-section d-none">
-                            <label for="other_dependents_text" class="form-label">ระบุรายละเอียด</label>
-                            <textarea class="form-control" id="other_dependents_text" name="other_dependents_details" rows="2" placeholder="เช่น พี่น้อง, ญาติ"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================== ส่วนที่ 3: สถานะการเงินและทรัพย์สิน ================== -->
-                <div id="section-3" class="survey-card d-none">
-                    <h2 class="h4 mb-4 text-center">ส่วนที่ 3: สถานะการเงินและทรัพย์สิน</h2>
-                    <div class="mb-3">
-                        <label for="debts" class="form-label">คุณมีหนี้สินประเภทใดบ้าง?</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="debts[]" value="หนี้บัตรเครดิต" id="debt-credit">
-                            <label class="form-check-label" for="debt-credit">หนี้บัตรเครดิต</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="debts[]" value="หนี้ผ่อนบ้าน/คอนโด" id="debt-home">
-                            <label class="form-check-label" for="debt-home">หนี้ผ่อนบ้าน/คอนโด</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="debts[]" value="หนี้ผ่อนรถยนต์" id="debt-car">
-                            <label class="form-check-label" for="debt-car">หนี้ผ่อนรถยนต์</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="debts[]" value="หนี้ส่วนบุคคล/อื่นๆ" id="debt-other">
-                            <label class="form-check-label" for="debt-other">หนี้ส่วนบุคคล/อื่นๆ (ระบุ)</label>
-                        </div>
-                        <div id="other_debts" class="conditional-section d-none">
-                            <label for="other_debts_text" class="form-label">ระบุรายละเอียด</label>
-                            <textarea class="form-control" id="other_debts_text" name="other_debts_details" rows="2" placeholder="เช่น หนี้การศึกษา"></textarea>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">คุณมีทรัพย์สินอะไรบ้าง?</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="assets[]" value="อสังหาริมทรัพย์" id="asset-property">
-                            <label class="form-check-label" for="asset-property">อสังหาริมทรัพย์ (เช่น ที่ดิน, บ้าน, คอนโด)</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="assets[]" value="เงินออม/เงินลงทุน" id="asset-savings">
-                            <label class="form-check-label" for="asset-savings">เงินออม/เงินลงทุน (เช่น กองทุน, หุ้น)</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="assets[]" value="รถยนต์" id="asset-car">
-                            <label class="form-check-label" for="asset-car">รถยนต์</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="assets[]" value="อื่นๆ" id="asset-other">
-                            <label class="form-check-label" for="asset-other">อื่นๆ (ระบุ)</label>
-                        </div>
-                        <div id="other_assets" class="conditional-section d-none">
-                            <label for="other_assets_text" class="form-label">ระบุรายละเอียด</label>
-                            <textarea class="form-control" id="other_assets_text" name="other_assets_details" rows="2" placeholder="เช่น ทองคำ, งานศิลปะ, ของสะสม"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================== ส่วนที่ 4: สุขภาพและไลฟ์สไตล์ ================== -->
-                <div id="section-4" class="survey-card d-none">
-                    <h2 class="h4 mb-4 text-center">ส่วนที่ 4: สุขภาพและไลฟ์สไตล์</h2>
-                    <div class="mb-3">
-                        <label class="form-label">คุณมีโรคประจำตัวหรือเคยเจ็บป่วยร้ายแรงหรือไม่?</label>
-                        <div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="health_history" id="health-yes" value="มี">
-                                <label class="form-check-label" for="health-yes">มี</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="health_history" id="health-no" value="ไม่มี" checked>
-                                <label class="form-check-label" for="health-no">ไม่มี</label>
-                            </div>
-                        </div>
-                        <div id="health_details" class="conditional-section d-none">
-                            <label for="health_details_text" class="form-label">ระบุรายละเอียด</label>
-                            <textarea class="form-control" id="health_details_text" name="health_details" rows="2" placeholder="เช่น โรคเบาหวาน, โรคหัวใจ, เคยผ่าตัด"></textarea>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">คุณมีประวัติครอบครัวเป็นโรคใดบ้าง?</label>
-                        <div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="family_diseases" id="family-yes" value="มี">
-                                <label class="form-check-label" for="family-yes">มี</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="family_diseases" id="family-no" value="ไม่มี" checked>
-                                <label class="form-check-label" for="family-no">ไม่มี</label>
-                            </div>
-                        </div>
-                        <div id="other_diseases" class="conditional-section d-none">
-                            <label for="other_diseases_text" class="form-label">ระบุรายละเอียด</label>
-                            <textarea class="form-control" id="other_diseases_text" name="family_diseases_details" rows="2" placeholder="เช่น โรคมะเร็ง, โรคความดันโลหิตสูง"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================== ส่วนที่ 5: เป้าหมายและกิจกรรมในชีวิต ================== -->
-                <div id="section-5" class="survey-card d-none">
-                    <h2 class="h4 mb-4 text-center">ส่วนที่ 5: เป้าหมายและกิจกรรมในชีวิต</h2>
-                    <div class="mb-3">
-                        <label class="form-label">เป้าหมายในชีวิตของคุณคืออะไร?</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="life_goals[]" value="การเงินที่มั่นคง" id="goal-finance">
-                            <label class="form-check-label" for="goal-finance">การเงินที่มั่นคง</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="life_goals[]" value="มีสุขภาพที่ดี" id="goal-health">
-                            <label class="form-check-label" for="goal-health">มีสุขภาพที่ดี</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="life_goals[]" value="ท่องเที่ยวรอบโลก" id="goal-travel">
-                            <label class="form-check-label" for="goal-travel">ท่องเที่ยวรอบโลก</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="life_goals[]" value="เกษียณก่อนกำหนด" id="goal-early-retire">
-                            <label class="form-check-label" for="goal-early-retire">เกษียณก่อนกำหนด</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="life_goals[]" value="อื่นๆ" id="goal-other">
-                            <label class="form-check-label" for="goal-other">อื่นๆ (ระบุ)</label>
-                        </div>
-                        <div id="other_goals" class="conditional-section d-none">
-                            <label for="other_goals_text" class="form-label">ระบุรายละเอียด</label>
-                            <textarea class="form-control" id="other_goals_text" name="other_goals_details" rows="2" placeholder="เช่น สร้างธุรกิจของตัวเอง, ซื้อบ้านหลังใหม่"></textarea>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">คุณมีความกังวลเกี่ยวกับอนาคตอะไรบ้าง?</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="future_concern[]" value="ค่าใช้จ่ายด้านสุขภาพ" id="concern-health">
-                            <label class="form-check-label" for="concern-health">ค่าใช้จ่ายด้านสุขภาพ</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="future_concern[]" value="การเกษียณอายุ" id="concern-retire">
-                            <label class="form-check-label" for="concern-retire">การเกษียณอายุ</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="future_concern[]" value="การดูแลคนในครอบครัว" id="concern-family">
-                            <label class="form-check-label" for="concern-family">การดูแลคนในครอบครัว</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="future_concern[]" value="รายได้ไม่พอใช้" id="concern-income">
-                            <label class="form-check-label" for="concern-income">รายได้ไม่พอใช้</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="future_concern[]" value="อื่นๆ" id="concern-other">
-                            <label class="form-check-label" for="concern-other">อื่นๆ (ระบุ)</label>
-                        </div>
-                        <div id="other_concern" class="conditional-section d-none">
-                            <label for="other_concern_text" class="form-label">ระบุรายละเอียด</label>
-                            <textarea class="form-control" id="other_concern_text" name="other_concern_details" rows="2" placeholder="เช่น ภาระหนี้สิน"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================== ส่วนที่ 6: พฤติกรรมและความเสี่ยง ================== -->
-                <div id="section-6" class="survey-card d-none">
-                    <h2 class="h4 mb-4 text-center">ส่วนที่ 6: พฤติกรรมและความเสี่ยง</h2>
-                    <div class="mb-3">
-                        <label class="form-label">คุณมีกิจกรรมที่ต้องทำเป็นประจำในแต่ละวัน?</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="regular_activities[]" value="ออกกำลังกาย" id="act-exercise">
-                            <label class="form-check-label" for="act-exercise">ออกกำลังกาย</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="regular_activities[]" value="ทานอาหารคลีน" id="act-clean-food">
-                            <label class="form-check-label" for="act-clean-food">ทานอาหารคลีน</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="regular_activities[]" value="นั่งทำงานหน้าคอมนานๆ" id="act-desk-work">
-                            <label class="form-check-label" for="act-desk-work">นั่งทำงานหน้าคอมนานๆ</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="regular_activities[]" value="เดินทางด้วยรถสาธารณะ" id="act-public-transport">
-                            <label class="form-check-label" for="act-public-transport">เดินทางด้วยรถสาธารณะ</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="regular_activities[]" value="อื่นๆ" id="act-other">
-                            <label class="form-check-label" for="act-other">อื่นๆ (ระบุ)</label>
-                        </div>
-                        <div id="other_activities" class="conditional-section d-none">
-                            <label for="other_activities_text" class="form-label">ระบุรายละเอียด</label>
-                            <textarea class="form-control" id="other_activities_text" name="other_activities_details" rows="2" placeholder="เช่น ทำกิจกรรมสันทนาการกลางแจ้ง"></textarea>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">คุณมีกิจกรรมที่ถือว่าเป็นความเสี่ยงหรือไม่?</label>
-                        <div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="risky_activities" id="risky-yes" value="มี">
-                                <label class="form-check-label" for="risky-yes">มี</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="risky_activities" id="risky-no" value="ไม่มี" checked>
-                                <label class="form-check-label" for="risky-no">ไม่มี</label>
-                            </div>
-                        </div>
-                        <div id="risky_activities_details" class="conditional-section d-none">
-                            <label for="risky_activities_text" class="form-label">ระบุรายละเอียด</label>
-                            <textarea class="form-control" id="risky_activities_text" name="risky_activities_details" rows="2" placeholder="เช่น กีฬาผาดโผน, ขับขี่รถมอเตอร์ไซค์"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================== ส่วนที่ 7: ข้อมูลประกันภัยปัจจุบัน ================== -->
-                <div id="section-7" class="survey-card d-none">
-                    <h2 class="h4 mb-4 text-center">ส่วนที่ 7: ข้อมูลประกันภัยปัจจุบัน</h2>
-                    <div class="mb-3">
-                        <label class="form-label">คุณมีประกันชีวิตหรือประกันสุขภาพอยู่แล้วหรือไม่?</label>
-                        <div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="current_insurance" id="insurance-yes" value="มี">
-                                <label class="form-check-label" for="insurance-yes">มี</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="current_insurance" id="insurance-no" value="ไม่มี" checked>
-                                <label class="form-check-label" for="insurance-no">ไม่มี</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="current_insurance" id="ins_yes" value="มี">
+                                <label class="form-check-label" for="ins_yes">มี</label>
                             </div>
                         </div>
                         <div id="other_insurance" class="conditional-section d-none">
-                            <label for="other_insurance_text" class="form-label">ระบุรายละเอียด</label>
-                            <textarea class="form-control" id="other_insurance_text" name="current_insurance_details" rows="2" placeholder="เช่น ประกันสุขภาพแบบกลุ่ม, ประกันชีวิต"></textarea>
+                            <div class="mb-3">
+                                <label for="other_insurance_details" class="form-label">โปรดระบุรายละเอียดประกันที่มีอยู่</label>
+                                <textarea class="form-control" id="other_insurance_details" name="other_insurance_details" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">คุณมีรายได้เสริมอื่น ๆ หรือไม่?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="additional_income" id="inc_no" value="ไม่มี" required>
+                                <label class="form-check-label" for="inc_no">ไม่มี</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="additional_income" id="inc_yes" value="มี">
+                                <label class="form-check-label" for="inc_yes">มี</label>
+                            </div>
+                        </div>
+                        <div id="additional_income_details" class="conditional-section d-none">
+                            <div class="mb-3">
+                                <label for="add_inc_details_text" class="form-label">โปรดระบุรายละเอียดรายได้เสริม</label>
+                                <textarea class="form-control" id="add_inc_details_text" name="additional_income_details" rows="3"></textarea>
+                            </div>
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">คุณเคยถูกบริษัทประกันปฏิเสธการรับประกันหรือไม่?</label>
-                        <div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="rejected_insurance" id="rejected-yes" value="เคย">
-                                <label class="form-check-label" for="rejected-yes">เคย</label>
+
+                    <!-- Section 3: ทรัพย์สินและหนี้สิน -->
+                    <div id="section-3" class="survey-section d-none">
+                        <h2>3. ทรัพย์สินและหนี้สิน</h2>
+                        <div class="mb-3">
+                            <label class="form-label">คุณมีทรัพย์สินอะไรบ้าง (เช่น บ้าน, รถ, ที่ดิน, กองทุนรวม)?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="assets" id="asset_house" value="บ้าน">
+                                <label class="form-check-label" for="asset_house">บ้าน</label>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="rejected_insurance" id="rejected-no" value="ไม่เคย" checked>
-                                <label class="form-check-label" for="rejected-no">ไม่เคย</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="assets" id="asset_car" value="รถ">
+                                <label class="form-check-label" for="asset_car">รถ</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="assets" id="asset_land" value="ที่ดิน">
+                                <label class="form-check-label" for="asset_land">ที่ดิน</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="assets" id="asset_fund" value="กองทุนรวม">
+                                <label class="form-check-label" for="asset_fund">กองทุนรวม</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="assets" id="asset_other" value="อื่นๆ">
+                                <label class="form-check-label" for="asset_other">อื่นๆ</label>
                             </div>
                         </div>
+                        <div id="other_assets" class="conditional-section d-none">
+                            <div class="mb-3">
+                                <label for="other_assets_text" class="form-label">โปรดระบุทรัพย์สินอื่น ๆ</label>
+                                <textarea class="form-control" id="other_assets_text" name="other_assets" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">คุณมีภาระหนี้สินอะไรบ้าง (เช่น หนี้บ้าน, หนี้รถ, หนี้บัตรเครดิต)?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="liabilities" id="lib_no" value="ไม่มี" required>
+                                <label class="form-check-label" for="lib_no">ไม่มี</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="liabilities" id="lib_yes" value="มี">
+                                <label class="form-check-label" for="lib_yes">มี</label>
+                            </div>
+                        </div>
+                        <div id="liabilities_details" class="conditional-section d-none">
+                            <div class="mb-3">
+                                <label for="lib_details_text" class="form-label">โปรดระบุรายละเอียดภาระหนี้สิน</label>
+                                <textarea class="form-control" id="lib_details_text" name="liabilities_details" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 4: สุขภาพ -->
+                    <div id="section-4" class="survey-section d-none">
+                        <h2>4. สุขภาพ</h2>
+                        <div class="mb-3">
+                            <label class="form-label">คุณมีปัญหาสุขภาพใดๆ หรือไม่?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="health" id="health_no" value="ไม่มี" required>
+                                <label class="form-check-label" for="health_no">ไม่มี</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="health" id="health_yes" value="มี">
+                                <label class="form-check-label" for="health_yes">มี</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="bmi" class="form-label">ค่าดัชนีมวลกาย (BMI)</label>
+                            <input type="number" class="form-control" id="bmi" name="bmi" step="0.1">
+                            <small class="form-text text-muted">คำนวณจากน้ำหนัก (กก.) / [ส่วนสูง (ม.)]²</small>
+                        </div>
+                    </div>
+
+                    <!-- Section 5: ครอบครัว -->
+                    <div id="section-5" class="survey-section d-none">
+                        <h2>5. ครอบครัว</h2>
+                        <div class="mb-3">
+                            <label for="family_structure" class="form-label">สถานะครอบครัว</label>
+                            <select class="form-select" id="family_structure" name="family_structure" required>
+                                <option value="" selected disabled>เลือก...</option>
+                                <option value="โสด">โสด</option>
+                                <option value="แต่งงาน">แต่งงาน</option>
+                                <option value="มีบุตร">มีบุตร</option>
+                                <option value="อื่นๆ">อื่นๆ</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="number_of_children" class="form-label">จำนวนบุตร (ถ้ามี)</label>
+                            <input type="number" class="form-control" id="number_of_children" name="number_of_children" min="0">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">คุณกังวลเกี่ยวกับอนาคตของบุตรในด้านใดมากที่สุด?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="child_concern" id="child_edu" value="การศึกษา">
+                                <label class="form-check-label" for="child_edu">การศึกษา</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="child_concern" id="child_health" value="สุขภาพ">
+                                <label class="form-check-label" for="child_health">สุขภาพ</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="child_concern" id="child_other" value="อื่นๆ">
+                                <label class="form-check-label" for="child_other">อื่นๆ</label>
+                            </div>
+                        </div>
+                        <div id="other_child_concern" class="conditional-section d-none">
+                            <div class="mb-3">
+                                <label for="other_child_concern_details" class="form-label">โปรดระบุความกังวลอื่น ๆ</label>
+                                <textarea class="form-control" id="other_child_concern_details" name="other_child_concern_details" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">มีประวัติโรคประจำตัวในครอบครัว (เช่น เบาหวาน, มะเร็ง) หรือไม่?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="family_diseases" id="fam_dis_no" value="ไม่มี" required>
+                                <label class="form-check-label" for="fam_dis_no">ไม่มี</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="family_diseases" id="fam_dis_yes" value="มี">
+                                <label class="form-check-label" for="fam_dis_yes">มี</label>
+                            </div>
+                        </div>
+                        <div id="other_diseases" class="conditional-section d-none">
+                            <div class="mb-3">
+                                <label for="other_diseases_details" class="form-label">โปรดระบุรายละเอียดโรค</label>
+                                <textarea class="form-control" id="other_diseases_details" name="other_diseases" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 6: เป้าหมายในชีวิต -->
+                    <div id="section-6" class="survey-section d-none">
+                        <h2>6. เป้าหมายในชีวิต</h2>
+                        <div class="mb-3">
+                            <label class="form-label">เป้าหมายในชีวิตของคุณคืออะไร?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="life_goals" id="goal_retire" value="เกษียณอย่างมั่นคง">
+                                <label class="form-check-label" for="goal_retire">เกษียณอย่างมั่นคง</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="life_goals" id="goal_travel" value="ท่องเที่ยวรอบโลก">
+                                <label class="form-check-label" for="goal_travel">ท่องเที่ยวรอบโลก</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="life_goals" id="goal_invest" value="ลงทุนให้เงินงอกเงย">
+                                <label class="form-check-label" for="goal_invest">ลงทุนให้เงินงอกเงย</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="life_goals" id="goal_other" value="อื่นๆ">
+                                <label class="form-check-label" for="goal_other">อื่นๆ</label>
+                            </div>
+                        </div>
+                        <div id="other_goals" class="conditional-section d-none">
+                            <div class="mb-3">
+                                <label for="other_goals_details" class="form-label">โปรดระบุเป้าหมายอื่น ๆ</label>
+                                <textarea class="form-control" id="other_goals_details" name="other_goals" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 7: ความกังวลในอนาคต -->
+                    <div id="section-7" class="survey-section d-none">
+                        <h2>7. ความกังวลในอนาคต</h2>
+                        <div class="mb-3">
+                            <label class="form-label">คุณกังวลเรื่องอะไรมากที่สุดในอนาคต?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="future_concern" id="con_health" value="สุขภาพ">
+                                <label class="form-check-label" for="con_health">สุขภาพ</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="future_concern" id="con_fin" value="ความมั่นคงทางการเงิน">
+                                <label class="form-check-label" for="con_fin">ความมั่นคงทางการเงิน</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="future_concern" id="con_unexp" value="เหตุการณ์ไม่คาดฝัน">
+                                <label class="form-check-label" for="con_unexp">เหตุการณ์ไม่คาดฝัน</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="future_concern" id="con_other" value="อื่นๆ">
+                                <label class="form-check-label" for="con_other">อื่นๆ</label>
+                            </div>
+                        </div>
+                        <div id="other_concern" class="conditional-section d-none">
+                            <div class="mb-3">
+                                <label for="other_concern_details" class="form-label">โปรดระบุความกังวลอื่น ๆ</label>
+                                <textarea class="form-control" id="other_concern_details" name="other_concern" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 8: ไลฟ์สไตล์และกิจกรรม -->
+                    <div id="section-8" class="survey-section d-none">
+                        <h2>8. ไลฟ์สไตล์และกิจกรรม</h2>
+                        <div class="mb-3">
+                            <label class="form-label">กิจกรรมประจำวันของคุณมีอะไรบ้าง?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="regular_activities" id="act_work" value="ทำงาน">
+                                <label class="form-check-label" for="act_work">ทำงาน</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="regular_activities" id="act_social" value="เข้าสังคม/สังสรรค์">
+                                <label class="form-check-label" for="act_social">เข้าสังคม/สังสรรค์</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="regular_activities" id="act_exercise" value="ออกกำลังกาย">
+                                <label class="form-check-label" for="act_exercise">ออกกำลังกาย</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="regular_activities" id="act_other" value="อื่นๆ">
+                                <label class="form-check-label" for="act_other">อื่นๆ</label>
+                            </div>
+                        </div>
+                        <div id="other_activities" class="conditional-section d-none">
+                            <div class="mb-3">
+                                <label for="other_activities_details" class="form-label">โปรดระบุกิจกรรมอื่น ๆ</label>
+                                <textarea class="form-control" id="other_activities_details" name="other_activities" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">คุณมีกิจกรรมเสี่ยงภัย (เช่น กีฬาผาดโผน, ขับรถเร็ว) หรือไม่?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="risky_activities" id="risky_no" value="ไม่มี" required>
+                                <label class="form-check-label" for="risky_no">ไม่มี</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="risky_activities" id="risky_yes" value="มี">
+                                <label class="form-check-label" for="risky_yes">มี</label>
+                            </div>
+                        </div>
+                        <div id="risky_activities_details" class="conditional-section d-none">
+                            <div class="mb-3">
+                                <label for="risky_details_text" class="form-label">โปรดระบุรายละเอียดกิจกรรมเสี่ยงภัย</label>
+                                <textarea class="form-control" id="risky_details_text" name="risky_activities_details" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 9: ความรู้สึกและความกังวล -->
+                    <div id="section-9" class="survey-section d-none">
+                        <h2>9. ความรู้สึกและความกังวล</h2>
+                        <div class="mb-3">
+                            <label class="form-label">คุณรู้สึกว่ามีช่องโหว่ (Life Gaps) ในแผนการเงินหรือความมั่นคงในชีวิตด้านใดบ้าง?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="life_security" id="sec_health" value="สุขภาพ">
+                                <label class="form-check-label" for="sec_health">สุขภาพ</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="life_security" id="sec_income" value="รายได้">
+                                <label class="form-check-label" for="sec_income">รายได้</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="life_security" id="sec_family" value="ความมั่นคงของครอบครัว">
+                                <label class="form-check-label" for="sec_family">ความมั่นคงของครอบครัว</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="life_security" id="sec_other" value="อื่นๆ">
+                                <label class="form-check-label" for="sec_other">อื่นๆ</label>
+                            </div>
+                        </div>
+                        <div id="other_security" class="conditional-section d-none">
+                            <div class="mb-3">
+                                <label for="other_security_details" class="form-label">โปรดระบุช่องโหว่อื่น ๆ</label>
+                                <textarea class="form-control" id="other_security_details" name="other_security" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">คุณอยากมีความอุ่นใจในเรื่องใดมากที่สุด?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="peace_of_mind" id="peace_health" value="สุขภาพที่แข็งแรง">
+                                <label class="form-check-label" for="peace_health">สุขภาพที่แข็งแรง</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="peace_of_mind" id="peace_fin" value="การเงินที่มั่นคง">
+                                <label class="form-check-label" for="peace_fin">การเงินที่มั่นคง</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="peace_of_mind" id="peace_fam" value="ความสุขของครอบครัว">
+                                <label class="form-check-label" for="peace_fam">ความสุขของครอบครัว</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="peace_of_mind" id="peace_other" value="อื่นๆ">
+                                <label class="form-check-label" for="peace_other">อื่นๆ</label>
+                            </div>
+                        </div>
+                        <div id="other_peace_of_mind" class="conditional-section d-none">
+                            <div class="mb-3">
+                                <label for="other_peace_of_mind_details" class="form-label">โปรดระบุความอุ่นใจอื่น ๆ</label>
+                                <textarea class="form-control" id="other_peace_of_mind_details" name="other_peace_of_mind" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">สำหรับผู้ที่ไม่มีครอบครัว คุณกังวลเรื่องอะไรมากที่สุด?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="single_concern" id="single_health" value="สุขภาพยามแก่">
+                                <label class="form-check-label" for="single_health">สุขภาพยามแก่</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="single_concern" id="single_fin" value="การเงินหลังเกษียณ">
+                                <label class="form-check-label" for="single_fin">การเงินหลังเกษียณ</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="single_concern" id="single_lonely" value="ความเหงา">
+                                <label class="form-check-label" for="single_lonely">ความเหงา</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="single_concern" id="single_other" value="อื่นๆ">
+                                <label class="form-check-label" for="single_other">อื่นๆ</label>
+                            </div>
+                        </div>
+                        <div id="other_single_concern" class="conditional-section d-none">
+                            <div class="mb-3">
+                                <label for="other_single_concern_details" class="form-label">โปรดระบุความกังวลอื่น ๆ</label>
+                                <textarea class="form-control" id="other_single_concern_details" name="other_single_concern" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">คุณเตรียมตัวรับมือกับความกังวลเหล่านั้นอย่างไรบ้าง?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="single_prep" id="prep_invest" value="ลงทุน">
+                                <label class="form-check-label" for="prep_invest">ลงทุน</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="single_prep" id="prep_save" value="ออมเงิน">
+                                <label class="form-check-label" for="prep_save">ออมเงิน</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="single_prep" id="prep_insure" value="ซื้อประกัน">
+                                <label class="form-check-label" for="prep_insure">ซื้อประกัน</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="single_prep" id="prep_other" value="อื่นๆ">
+                                <label class="form-check-label" for="prep_other">อื่นๆ</label>
+                            </div>
+                        </div>
+                        <div id="other_single_prep" class="conditional-section d-none">
+                            <div class="mb-3">
+                                <label for="other_single_prep_details" class="form-label">โปรดระบุวิธีการเตรียมตัวอื่น ๆ</label>
+                                <textarea class="form-control" id="other_single_prep_details" name="other_single_prep" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Summary Section -->
+                    <div id="section-10" class="survey-section d-none">
+                        <div id="summary-container" class="mb-4">
+                            <h2>สรุปข้อมูลที่คุณกรอก</h2>
+                            <p>โปรดตรวจสอบข้อมูลอีกครั้งก่อนส่ง</p>
+                            <div id="summary-items"></div>
+                        </div>
+                        <div class="d-grid mt-4">
+                            <button id="submitButton" type="submit" class="btn btn-success btn-lg">
+                                <i class="fas fa-paper-plane me-2"></i>
+                                สร้างรายงานจาก Gemini
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+
+                <div id="report-container" class="mt-5 p-4 bg-light rounded" style="display: none;">
+                    <h2>รายงาน Life Gap และคำแนะนำจาก AI</h2>
+                    <div id="gemini-report">
+                        <!-- Gemini report will be displayed here -->
                     </div>
                 </div>
 
-                <!-- ================== ส่วนสรุป ================== -->
-                <div id="section-summary" class="survey-card d-none">
-                    <h2 class="h4 mb-4 text-center">สรุปข้อมูลของคุณ</h2>
-                    <div id="summary-content">
-                        <!-- Summary content will be dynamically generated here -->
-                    </div>
-                    <div id="recommendation-section" class="d-none">
-                         <h4 class="text-center">✨ คำแนะนำด้านประกันภัยสำหรับคุณ ✨</h4>
-                         <div id="recommendation-text" class="p-3 bg-white rounded">
-                             <div class="text-center text-muted">กำลังวิเคราะห์ข้อมูล... โปรดรอสักครู่</div>
-                         </div>
-                    </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for loading and messages -->
+    <div id="myModal" class="modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <p id="modal-message"></p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Navigation -->
-    <div id="navigation">
-        <div class="container d-flex justify-content-between">
-            <button id="prev-btn" class="btn btn-primary d-none"><i class="fas fa-arrow-left me-2"></i>ย้อนกลับ</button>
-            <button id="next-btn" class="btn btn-primary">ถัดไป<i class="fas fa-arrow-right ms-2"></i></button>
-            <button id="submit-btn" class="btn btn-success d-none"><i class="fas fa-paper-plane me-2"></i>ส่งข้อมูล</button>
-            <button id="generate-rec-btn" class="btn btn-gemini d-none"><i class="fas fa-magic me-2"></i>สร้างคำแนะนำจาก Gemini</button>
-        </div>
-    </div>
-
-    <!-- Custom Modal for Notifications -->
-    <div id="custom-modal" class="modal-overlay">
-        <div class="modal-content">
-            <h5 id="modal-title" class="fw-bold mb-3"></h5>
-            <p id="modal-message" class="mb-4"></p>
-            <button id="modal-ok-btn" class="btn btn-primary">ตกลง</button>
-        </div>
+    <div id="navigation" class="d-flex justify-content-between p-3 fixed-bottom">
+        <button id="prevButton" class="btn btn-primary" style="visibility: hidden;">
+            <i class="fas fa-arrow-left me-2"></i> ย้อนกลับ
+        </button>
+        <button id="nextButton" class="btn btn-primary">
+            ถัดไป <i class="fas fa-arrow-right ms-2"></i>
+        </button>
     </div>
 
     <script>
-        /** * Thai Insurance Survey Application JavaScript
-         * แอปพลิเคชันแบบสอบถามประกันภัยภาษาไทย
-         */
-
-        // ==== เพิ่มส่วนเชื่อม Google Apps Script ====
-        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyPGf5KRQo9ddR5iwAM4PZJKNQ-pdoYk1S1-qFB2MeFLO8Rm9JV0VvGzZdLRAnt84bvuQ/exec';
-
-        // Custom Modal Functions
-        function showModal(title, message) {
-            const modal = document.getElementById('custom-modal');
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-message').innerText = message;
-            modal.style.display = 'flex';
-        }
-
-        function hideModal() {
-            const modal = document.getElementById('custom-modal');
-            modal.style.display = 'none';
-        }
-
-        document.getElementById('modal-ok-btn').addEventListener('click', hideModal);
-
-        // แปลงข้อมูลสำหรับส่ง (Array -> comma-separated)
-        function buildPayload(data) {
-          const normalized = {};
-          Object.keys(data).forEach(k => {
-            const v = data[k];
-            normalized[k] = Array.isArray(v) ? v.join(', ') : v;
-          });
-          normalized._submittedAt = new Date().toISOString();
-          normalized._userAgent = navigator.userAgent;
-          return normalized;
-        }
-
-        // ฟังก์ชันส่งข้อมูลไป Apps Script
-        async function submitSurvey() {
-            const submitBtn = document.getElementById('submit-btn');
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>กำลังส่ง...';
-
-            try {
-                const payload = buildPayload(formData);
-                await fetch(GOOGLE_APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify(payload),
-                });
-                showModal('ส่งข้อมูลสำเร็จ', 'บันทึกข้อมูลเรียบร้อย ขอบคุณที่ตอบแบบสอบถาม!');
-                // สามารถ redirect หรือกดปิดหน้าต่างได้ตรงนี้
-            } catch (err) {
-                showModal('ส่งข้อมูลไม่สำเร็จ', 'ส่งข้อมูลไม่สำเร็จ กรุณาลองใหม่ หรือแจ้งผู้ดูแลระบบ');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>ส่งข้อมูล';
-            }
-        }
-
-        // Global variables
+        // ==== Global variables ====
+        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzLlGnW1rYYHNtKk7iPNbOqohod-1YGAbcCmq_Z_ER9ZuTk5QjkBXnxmTQ7P_UCoRdmwA/exec'; // Replace with your actual App Script URL
+        
         let currentSection = 0;
-        const sections = [
-            'section-1', 'section-2', 'section-3', 'section-4',
-            'section-5', 'section-6', 'section-7', 'section-summary'
-        ];
+        const sections = document.querySelectorAll('.survey-section');
+        const totalSections = sections.length;
+        const form = document.getElementById('surveyForm');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        const progressBar = document.getElementById('progressBar');
+        const progressLabel = document.getElementById('progressLabel');
+        const pageCounter = document.getElementById('pageCounter');
+        const submitButton = document.getElementById('submitButton');
+        const summaryItemsContainer = document.getElementById('summary-items');
+        const reportContainer = document.getElementById('report-container');
+        const geminiReportDiv = document.getElementById('gemini-report');
+
         let formData = {};
 
-        // DOM elements
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const submitBtn = document.getElementById('submit-btn');
-        const progressBar = document.getElementById('progress-bar');
-        const progressText = document.getElementById('progress-text');
-        const generateRecBtn = document.getElementById('generate-rec-btn');
-        const recommendationSection = document.getElementById('recommendation-section');
-        const recommendationText = document.getElementById('recommendation-text');
-        
-        // ฟังก์ชันสำหรับเรียก Gemini API
-        async function generateRecommendations() {
-            recommendationSection.classList.remove('d-none');
-            generateRecBtn.disabled = true;
-            generateRecBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>กำลังวิเคราะห์...';
-            recommendationText.innerHTML = '<div class="text-center text-muted">กำลังวิเคราะห์ข้อมูล... โปรดรอสักครู่</div>';
+        // ==== Modal functions ====
+        const myModal = document.getElementById('myModal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalMessage = document.getElementById('modal-message');
 
-            const payload = {
-                contents: [{
-                    parts: [{
-                        text: `
-                        Act as a professional financial advisor specializing in life insurance in Thailand. You are highly knowledgeable and empathetic.
-                        Based on the following survey data from a user in Thailand, analyze their "Life Gaps" and provide a personalized, comprehensive, and easy-to-understand insurance recommendation. The response should be in Thai.
-                        
-                        - Start with a polite greeting.
-                        - Analyze the user's financial status, family situation, health, and life goals to identify their potential "Life Gaps" (e.g., lack of health coverage, insufficient retirement savings, or inadequate family protection).
-                        - For each identified gap, explain why it's a risk.
-                        - Propose specific types of insurance products to address each gap. Be specific about the type (e.g., "ประกันสุขภาพแบบเหมาจ่าย" - all-inclusive health insurance, "ประกันชีวิตแบบตลอดชีพ" - whole life insurance, "ประกันบำนาญ" - pension insurance).
-                        - Do not recommend specific companies or product names.
-                        - End with a summary of the main points.
-                        - Use clear, professional, and compassionate language.
+        function showModal(title, message, isLoading = false) {
+            modalTitle.textContent = title;
+            modalMessage.innerHTML = message;
+            if (isLoading) {
+                myModal.querySelector('.modal-content').innerHTML = `
+                    <div class="d-flex justify-content-center align-items-center flex-column" style="height: 150px;">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-3 text-primary">${message}</p>
+                    </div>
+                `;
+            } else {
+                myModal.querySelector('.modal-content').innerHTML = `
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title">${title}</h5>
+                        <button type="button" class="btn-close" onclick="closeModal()" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>${message}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="closeModal()">ตกลง</button>
+                    </div>
+                `;
+            }
+            myModal.style.display = 'block';
+        }
 
-                        User Survey Data:
-                        ${JSON.stringify(formData, null, 2)}
-                        `
-                    }]
-                }]
-            };
+        function closeModal() {
+            myModal.style.display = 'none';
+        }
 
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target == myModal) {
+                closeModal();
+            }
+        }
+
+        // ==== Navigation and Form Handling ====
+        function updateUI() {
+            sections.forEach((section, index) => {
+                section.classList.toggle('d-none', index !== currentSection);
+            });
+            prevButton.style.visibility = currentSection === 0 ? 'hidden' : 'visible';
+            nextButton.style.visibility = currentSection === totalSections - 1 ? 'hidden' : 'visible';
             
-            let attempts = 0;
-            const maxAttempts = 5;
-            let success = false;
-            let responseText = '';
+            submitButton.classList.toggle('d-none', currentSection !== totalSections - 1);
+            
+            const progress = (currentSection / (totalSections - 1)) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressLabel.textContent = `${Math.round(progress)}%`;
+            pageCounter.textContent = `หน้า ${currentSection + 1}/${totalSections}`;
+        }
 
-            while (attempts < maxAttempts && !success) {
-                try {
-                    const response = await fetch(url, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(payload),
-                    });
-
-                    if (!response.ok) {
-                        if (response.status === 429) { // Rate limit exceeded
-                            const delay = Math.pow(2, attempts) * 1000;
-                            console.warn(`Rate limit exceeded. Retrying in ${delay / 1000}s...`);
-                            await new Promise(res => setTimeout(res, delay));
-                            attempts++;
-                            continue;
-                        }
-                        throw new Error(`API response was not ok: ${response.status} ${response.statusText}`);
-                    }
-                    
-                    const result = await response.json();
-                    responseText = result.candidates[0].content.parts[0].text;
-                    success = true;
-
-                } catch (error) {
-                    console.error('Error calling Gemini API:', error);
-                    responseText = 'ไม่สามารถสร้างคำแนะนำได้ในขณะนี้ โปรดลองใหม่อีกครั้ง';
-                    break;
+        function nextSection() {
+            if (currentSection < totalSections - 1) {
+                if (!validateSection(currentSection)) return;
+                currentSection++;
+                updateUI();
+                updateFormData();
+                if (currentSection === totalSections - 1) {
+                    generateSummary();
                 }
             }
-            
-            recommendationText.innerHTML = responseText.replace(/\n/g, '<br>'); // Display recommendations with line breaks
-            generateRecBtn.disabled = false;
-            generateRecBtn.innerHTML = '<i class="fas fa-magic me-2"></i>สร้างคำแนะนำจาก Gemini';
         }
 
-        // ฟังก์ชันสำหรับแสดงส่วนถัดไป
-        function nextSection() {
-            if (!validateSection(currentSection)) {
-                return;
-            }
-
-            saveFormData();
-
-            if (currentSection < sections.length - 1) {
-                currentSection++;
-                updateSectionVisibility();
-                updateNavigationButtons();
-                updateProgressBar();
-            }
-        }
-
-        // ฟังก์ชันสำหรับแสดงส่วนก่อนหน้า
         function prevSection() {
             if (currentSection > 0) {
                 currentSection--;
-                updateSectionVisibility();
-                updateNavigationButtons();
-                updateProgressBar();
+                updateUI();
             }
         }
 
-        // ฟังก์ชันสำหรับตรวจสอบความถูกต้องของข้อมูลในแต่ละส่วน
         function validateSection(sectionIndex) {
-            const currentSectionEl = document.getElementById(sections[sectionIndex]);
-            const inputs = currentSectionEl.querySelectorAll('input[required], select[required], textarea[required]');
+            const section = sections[sectionIndex];
+            const requiredInputs = section.querySelectorAll('[required]');
             let isValid = true;
-            inputs.forEach(input => {
-                if (!input.value.trim()) {
-                    input.classList.add('is-invalid');
+            requiredInputs.forEach(input => {
+                if (!input.checkValidity()) {
+                    input.reportValidity();
                     isValid = false;
-                } else {
-                    input.classList.remove('is-invalid');
                 }
             });
-
-            if (!isValid) {
-                showModal('ข้อมูลไม่ครบถ้วน', 'กรุณากรอกข้อมูลให้ครบทุกช่องที่มีเครื่องหมายดอกจัน (*)');
-            }
             return isValid;
         }
 
-        // ฟังก์ชันสำหรับบันทึกข้อมูล
-        function saveFormData() {
-            const currentSectionEl = document.getElementById(sections[currentSection]);
-            const inputs = currentSectionEl.querySelectorAll('input, select, textarea');
+        function updateFormData() {
+            const currentSectionInputs = sections[currentSection].querySelectorAll('input, select, textarea');
+            currentSectionInputs.forEach(input => {
+                const name = input.name;
+                if (!name) return;
 
-            inputs.forEach(input => {
                 if (input.type === 'radio') {
                     if (input.checked) {
-                        formData[input.name] = input.value;
+                        formData[name] = input.value;
                     }
                 } else if (input.type === 'checkbox') {
+                    if (!formData[name]) {
+                        formData[name] = [];
+                    }
                     if (input.checked) {
-                        if (!formData[input.name]) {
-                            formData[input.name] = [];
+                        if (!formData[name].includes(input.value)) {
+                            formData[name].push(input.value);
                         }
-                        formData[input.name].push(input.value);
                     } else {
-                        // clear if unchecked
-                        if (formData[input.name] && formData[input.name].includes(input.value)) {
-                            formData[input.name] = formData[input.name].filter(val => val !== input.value);
+                        const index = formData[name].indexOf(input.value);
+                        if (index > -1) {
+                            formData[name].splice(index, 1);
                         }
                     }
                 } else {
-                    formData[input.name] = input.value;
+                    formData[name] = input.value;
                 }
             });
-
-            // Handle conditional fields
-            const conditionalInputs = currentSectionEl.querySelectorAll('.conditional-section textarea');
-            conditionalInputs.forEach(textarea => {
-                const parent = textarea.closest('.conditional-section');
-                if (parent && !parent.classList.contains('d-none')) {
-                    formData[textarea.name] = textarea.value;
-                } else {
-                    // If the section is hidden, clear the value from formData
-                    delete formData[textarea.name];
-                }
-            });
-        }
-
-        // ฟังก์ชันสำหรับอัปเดตการมองเห็นของส่วนต่างๆ
-        function updateSectionVisibility() {
-            sections.forEach((sectionId, index) => {
-                const section = document.getElementById(sectionId);
-                if (index === currentSection) {
-                    section.classList.remove('d-none');
-                    if (sectionId === 'section-summary') {
-                        generateSummary();
-                    }
-                } else {
-                    section.classList.add('d-none');
-                }
-            });
-        }
-
-        // ฟังก์ชันสำหรับอัปเดตปุ่มนำทาง
-        function updateNavigationButtons() {
-            if (currentSection === 0) {
-                prevBtn.classList.add('d-none');
-            } else {
-                prevBtn.classList.remove('d-none');
-            }
-
-            if (currentSection === sections.length - 1) {
-                nextBtn.classList.add('d-none');
-                submitBtn.classList.remove('d-none');
-                generateRecBtn.classList.remove('d-none');
-            } else {
-                nextBtn.classList.remove('d-none');
-                submitBtn.classList.add('d-none');
-                generateRecBtn.classList.add('d-none');
-            }
-        }
-
-        // ฟังก์ชันสำหรับอัปเดตแถบความคืบหน้า
-        function updateProgressBar() {
-            const progress = ((currentSection) / (sections.length - 1)) * 100;
-            progressBar.style.width = `${progress}%`;
-            progressText.innerText = `ส่วนที่ ${currentSection + 1} จาก ${sections.length - 1}: ${getSectionTitle(currentSection)}`;
-        }
-
-        // Helper function to get section titles
-        function getSectionTitle(index) {
-            const titles = [
-                'ข้อมูลส่วนตัว', 'สถานะครอบครัว', 'สถานะการเงินและทรัพย์สิน', 'สุขภาพและไลฟ์สไตล์',
-                'เป้าหมายและกิจกรรมในชีวิต', 'พฤติกรรมและความเสี่ยง', 'ข้อมูลประกันภัยปัจจุบัน', 'สรุป'
-            ];
-            return titles[index];
-        }
-
-        // ฟังก์ชันสำหรับสร้างหน้าสรุป
-        function generateSummary() {
-            const summaryContent = document.getElementById('summary-content');
-            summaryContent.innerHTML = '';
-            
-            const fieldLabels = {
-                name: "ชื่อ-นามสกุล", age: "อายุ", career: "อาชีพ", income: "รายได้ต่อเดือน", additional_income: "รายได้เสริม", additional_income_details: "รายละเอียดรายได้เสริม",
-                marital_status: "สถานภาพสมรส", children_count: "จำนวนบุตร", dependents: "ภาระที่ต้องดูแล", other_dependents_details: "รายละเอียดภาระอื่นๆ",
-                debts: "หนี้สิน", other_debts_details: "รายละเอียดหนี้สินอื่นๆ", assets: "ทรัพย์สิน", other_assets_details: "รายละเอียดทรัพย์สินอื่นๆ",
-                health_history: "ประวัติเจ็บป่วย", health_details: "รายละเอียดประวัติเจ็บป่วย", family_diseases: "ประวัติโรคในครอบครัว", family_diseases_details: "รายละเอียดประวัติโรคในครอบครัว",
-                life_goals: "เป้าหมายในชีวิต", other_goals_details: "รายละเอียดเป้าหมายอื่นๆ", future_concern: "ความกังวลเกี่ยวกับอนาคต", other_concern_details: "รายละเอียดความกังวลอื่นๆ",
-                regular_activities: "กิจกรรมประจำ", other_activities_details: "รายละเอียดกิจกรรมอื่นๆ", risky_activities: "กิจกรรมเสี่ยง", risky_activities_details: "รายละเอียดกิจกรรมเสี่ยง",
-                current_insurance: "ประกันที่มีอยู่", current_insurance_details: "รายละเอียดประกัน", rejected_insurance: "เคยถูกปฏิเสธการรับประกัน"
-            };
-
-            for (const key in formData) {
-                if (formData.hasOwnProperty(key) && formData[key]) {
-                    const value = Array.isArray(formData[key]) ? formData[key].join(', ') : formData[key];
-                    const label = fieldLabels[key] || key;
-                    if (value.trim() !== '') {
-                         const summaryItem = document.createElement('div');
-                        summaryItem.classList.add('summary-item');
-                        summaryItem.innerHTML = `<strong>${label}:</strong> ${value}`;
-                        summaryContent.appendChild(summaryItem);
-                    }
-                }
-            }
-
-            if (summaryContent.innerHTML === '') {
-                summaryContent.innerHTML = '<p class="text-muted text-center">ยังไม่มีข้อมูลที่กรอก</p>';
-            }
         }
         
-        // ฟังก์ชันสำหรับจัดการเงื่อนไขการแสดงผลช่อง input
-        const setupConditionalInput = (radioName, inputId) => {
-            const container = document.getElementById(inputId);
-            if (!container) return;
-            
-            const inputs = document.querySelectorAll(`input[name="${radioName}"]`);
-            inputs.forEach(input => {
-                input.addEventListener('change', () => {
-                    const selectedValues = Array.from(inputs).filter(i => i.checked).map(i => i.value);
-                    if (selectedValues.includes('อื่นๆ') || selectedValues.includes('มี')) {
-                        container.classList.remove('d-none');
+        // ==== Summary Functions ====
+        function generateSummary() {
+            summaryItemsContainer.innerHTML = '';
+            const formDataToDisplay = { ...formData };
+            delete formDataToDisplay._submittedAt;
+            delete formDataToDisplay._userAgent;
+
+            const displayNames = {
+                full_name: 'ชื่อ-นามสกุล',
+                age: 'อายุ',
+                occupation: 'อาชีพ',
+                monthly_income: 'รายได้ต่อเดือน',
+                current_insurance: 'มีประกันภัยอยู่แล้ว',
+                other_insurance_details: 'รายละเอียดประกันที่มีอยู่',
+                additional_income: 'มีรายได้เสริม',
+                additional_income_details: 'รายละเอียดรายได้เสริม',
+                assets: 'ทรัพย์สิน',
+                other_assets: 'ทรัพย์สินอื่นๆ',
+                liabilities: 'ภาระหนี้สิน',
+                liabilities_details: 'รายละเอียดภาระหนี้สิน',
+                health: 'มีปัญหาสุขภาพ',
+                bmi: 'ค่า BMI',
+                family_structure: 'สถานะครอบครัว',
+                number_of_children: 'จำนวนบุตร',
+                child_concern: 'ความกังวลเกี่ยวกับบุตร',
+                other_child_concern_details: 'ความกังวลอื่นๆ เกี่ยวกับบุตร',
+                family_diseases: 'ประวัติโรคประจำตัวในครอบครัว',
+                other_diseases: 'รายละเอียดโรค',
+                life_goals: 'เป้าหมายในชีวิต',
+                other_goals: 'เป้าหมายอื่นๆ',
+                future_concern: 'ความกังวลในอนาคต',
+                other_concern: 'ความกังวลอื่นๆ',
+                regular_activities: 'กิจกรรมประจำวัน',
+                other_activities: 'กิจกรรมอื่นๆ',
+                risky_activities: 'กิจกรรมเสี่ยงภัย',
+                risky_activities_details: 'รายละเอียดกิจกรรมเสี่ยงภัย',
+                life_security: 'ช่องโหว่ในชีวิต',
+                other_security: 'ช่องโหว่อื่นๆ',
+                peace_of_mind: 'ความอุ่นใจที่อยากได้',
+                other_peace_of_mind: 'ความอุ่นใจอื่นๆ',
+                single_concern: 'ความกังวลของผู้ไม่มีครอบครัว',
+                other_single_concern: 'ความกังวลอื่นๆ',
+                single_prep: 'การเตรียมตัวรับมือ',
+                other_single_prep: 'การเตรียมตัวอื่นๆ'
+            };
+
+            for (const key in formDataToDisplay) {
+                if (formDataToDisplay[key]) {
+                    const value = Array.isArray(formDataToDisplay[key]) ? formDataToDisplay[key].join(', ') : formDataToDisplay[key];
+                    if (value.trim() !== '') {
+                        const item = document.createElement('div');
+                        item.classList.add('summary-item');
+                        item.innerHTML = `<strong>${displayNames[key] || key}:</strong> ${value}`;
+                        summaryItemsContainer.appendChild(item);
+                    }
+                }
+            }
+        }
+
+        // ==== Conditional Input Handling ====
+        function setupConditionalInput(radioName, inputId) {
+            const inputGroup = document.getElementById(inputId);
+            if (!inputGroup) return;
+
+            const radios = document.querySelectorAll(`input[name="${radioName}"]`);
+            radios.forEach(radio => {
+                radio.addEventListener('change', () => {
+                    if (radio.value === 'อื่นๆ' || radio.value === 'มี') {
+                        inputGroup.classList.remove('d-none');
                     } else {
-                        container.classList.add('d-none');
+                        inputGroup.classList.add('d-none');
+                    }
+                });
+            });
+
+            // For checkboxes
+            const checkboxes = document.querySelectorAll(`input[name="${radioName}"][type="checkbox"]`);
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    const hasOther = Array.from(checkboxes).some(c => c.checked && c.value === 'อื่นๆ');
+                    if (hasOther) {
+                        inputGroup.classList.remove('d-none');
+                    } else {
+                        inputGroup.classList.add('d-none');
                     }
                 });
             });
         };
 
-        // Event listeners
-        prevBtn.addEventListener('click', prevSection);
-        nextBtn.addEventListener('click', nextSection);
-        submitBtn.addEventListener('click', submitSurvey);
-        generateRecBtn.addEventListener('click', generateRecommendations);
-
-        // Event listeners for conditional inputs
         document.addEventListener('DOMContentLoaded', () => {
-            const setupConditionalInput = (inputName, conditionalDivId) => {
-                const inputGroup = document.getElementById(conditionalDivId);
-                if (!inputGroup) return;
-
-                const inputs = document.querySelectorAll(`input[name="${inputName}"]`);
-                inputs.forEach(input => {
-                    input.addEventListener('change', () => {
-                        let show = false;
-                        if (input.type === 'radio') {
-                            if (input.checked && (input.value === 'มี' || input.value === 'อื่นๆ')) {
-                                show = true;
-                            }
-                        } else if (input.type === 'checkbox') {
-                             const checkedCheckboxes = document.querySelectorAll(`input[name="${inputName}"]:checked`);
-                             if (Array.from(checkedCheckboxes).some(cb => cb.value === 'อื่นๆ')) {
-                                 show = true;
-                             }
-                        }
-
-                        if (show) {
-                            inputGroup.classList.remove('d-none');
-                        } else {
-                            // Check if any other 'others' checkbox is checked before hiding
-                            if (input.type === 'checkbox') {
-                                const allCheckedCheckboxes = document.querySelectorAll(`input[name="${inputName}"]:checked`);
-                                const hasOtherChecked = Array.from(allCheckedCheckboxes).some(cb => cb.value === 'อื่นๆ');
-                                if (!hasOtherChecked) {
-                                    inputGroup.classList.add('d-none');
-                                }
-                            } else {
-                                inputGroup.classList.add('d-none');
-                            }
-                        }
-                    });
-                });
-            };
+            updateUI();
+            prevButton.addEventListener('click', prevSection);
+            nextButton.addEventListener('click', nextSection);
 
             setupConditionalInput('additional_income', 'additional_income_details');
             setupConditionalInput('assets', 'other_assets');
-            setupConditionalInput('life_goals', 'other_goals');
+            setupConditionalInput('liabilities', 'liabilities_details');
+            setupConditionalInput('family_structure', 'number_of_children'); // Not conditional, just a specific logic
+            setupConditionalInput('child_concern', 'other_child_concern');
             setupConditionalInput('family_diseases', 'other_diseases');
+            setupConditionalInput('life_goals', 'other_goals');
             setupConditionalInput('future_concern', 'other_concern');
             setupConditionalInput('regular_activities', 'other_activities');
             setupConditionalInput('risky_activities', 'risky_activities_details');
@@ -1036,17 +942,63 @@
             setupConditionalInput('peace_of_mind', 'other_peace_of_mind');
             setupConditionalInput('single_concern', 'other_single_concern');
             setupConditionalInput('single_prep', 'other_single_prep');
-            setupConditionalInput('child_concern', 'other_child_concern');
             setupConditionalInput('current_insurance', 'other_insurance');
-            setupConditionalInput('debts[]', 'other_debts');
-            setupConditionalInput('dependents[]', 'other_dependents');
-            setupConditionalInput('health_history', 'health_details');
+            
+            // Handle form submission
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                submitSurvey();
+            });
         });
 
-        // Initialize the app
-        updateSectionVisibility();
-        updateNavigationButtons();
-        updateProgressBar();
+        // ==== New function to submit data and get Gemini Report ====
+        async function submitSurvey() {
+            try {
+                showModal('กำลังสร้างรายงาน...', 'ระบบกำลังประมวลผลข้อมูลและสร้างรายงานจาก Gemini AI กรุณารอสักครู่', true);
+                
+                const payload = buildPayload(formData);
+
+                const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(payload),
+                });
+                
+                const result = await response.json();
+
+                if (result.result === 'success') {
+                    closeModal();
+                    // Show success message and the report
+                    showModal('บันทึกข้อมูลสำเร็จ', 'ข้อมูลของคุณถูกบันทึกเรียบร้อยแล้ว');
+                    
+                    geminiReportDiv.innerHTML = result.report;
+                    reportContainer.style.display = 'block';
+                    
+                    // Scroll to the report section
+                    reportContainer.scrollIntoView({ behavior: 'smooth' });
+
+                } else {
+                    closeModal();
+                    showModal('เกิดข้อผิดพลาด', 'ไม่สามารถสร้างรายงานได้: ' + result.message);
+                }
+                
+            } catch (err) {
+                closeModal();
+                showModal('เกิดข้อผิดพลาด', 'ไม่สามารถเชื่อมต่อกับระบบได้ กรุณาลองใหม่อีกครั้ง');
+            }
+        }
+
+        // ==== Helper functions ====
+        function buildPayload(data) {
+            const normalized = {};
+            Object.keys(data).forEach(k => {
+                const v = data[k];
+                normalized[k] = Array.isArray(v) ? v.join(', ') : v;
+            });
+            normalized._submittedAt = new Date().toISOString();
+            normalized._userAgent = navigator.userAgent;
+            return normalized;
+        }
     </script>
 </body>
 </html>
