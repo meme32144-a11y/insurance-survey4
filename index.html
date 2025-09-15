@@ -439,7 +439,8 @@
     <script>
     document.addEventListener('DOMContentLoaded', () => {
 
-        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwbt1zlMJda6VTeCRdbnh-qXmUDgpvSqBmaG7-hHcBcGdHp4E9VKhRv9eEQVWV_OSnm7A/exec'; // <-- IMPORTANT: REPLACE THIS
+        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwbt1zlMJda6VTeCRdbnh-qXmUDgpvSqBmaG7-hHcBcGdHp4E9VKhRv9eEQVWV_OSnm7A/exec'; // <-- Make sure this is your correct URL
+
 
         // --- CHAPTER DEFINITIONS ---
         const WELCOME_CHAPTER = 0;
@@ -613,33 +614,37 @@
         }
         
         async function fetchReport(payload) {
-            if (!GOOGLE_APPS_SCRIPT_URL || GOOGLE_APPS_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
-                throw new Error("กรุณาตั้งค่า GOOGLE_APPS_SCRIPT_URL ในไฟล์ index.html");
+            if (!GOOGLE_APPS_SCRIPT_URL || GOOGLE_APPS_SCRIPT_URL.includes('YOUR_GOOGLE_APPS_SCRIPT_URL_HERE')) {
+                throw new Error("กรุณาตั้งค่า GOOGLE_APPS_SCRIPT_URL ในไฟล์ index.html ให้ถูกต้อง");
             }
-            const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors', // Use no-cors for cross-origin requests to Apps Script
-                cache: 'no-cache',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
-                redirect: 'follow'
-            });
-            
-            // Note: with no-cors, we can't inspect the response, so we optimistically parse it.
-            // For proper error handling, deploy Apps Script correctly to handle CORS.
-            const resultText = await response.text();
+
+            // This is the updated fetch function to correctly handle CORS with Google Apps Script
             try {
-                const result = JSON.parse(resultText);
+                const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    cache: 'no-cache',
+                    headers: {
+                        // Use text/plain to avoid a CORS preflight request, which Apps Script doesn't handle.
+                        'Content-Type': 'text/plain;charset=utf-8',
+                    },
+                    body: JSON.stringify(payload),
+                    redirect: 'follow'
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server responded with status: ${response.status}`);
+                }
+
+                const result = await response.json(); // Apps Script returns JSON, so we can parse it directly.
+
                 if (result.result === 'success' && result.report) {
                     return result.report;
                 } else {
-                   throw new Error(result.message || 'Could not generate report from server.');
+                    throw new Error(result.message || 'Could not generate report from server.');
                 }
-            } catch (e) {
-                 // If parsing fails, it might be a network error or an opaque response.
-                 // We will return a generic error. For debugging, check Apps Script logs.
-                 console.error("Failed to parse response:", resultText);
-                 throw new Error("เกิดข้อผิดพลาดในการสื่อสารกับเซิร์ฟเวอร์ กรุณาตรวจสอบ Log ใน Apps Script");
+            } catch (error) {
+                console.error("Fetch Error:", error);
+                throw new Error("เกิดข้อผิดพลาดในการสื่อสารกับเซิร์ฟเวอร์: " + error.message + " กรุณาตรวจสอบการตั้งค่า Deployment ของ Apps Script และ Log");
             }
         }
 
