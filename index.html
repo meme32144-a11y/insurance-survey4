@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ค้นพบพิมพ์เขียวแห่งชีวิตของคุณ | Life Blueprint Survey</title>
+    <title>แบบสอบถามแผนชีวิตรายบุคคล | Life Blueprint Survey</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -27,104 +27,31 @@
             font-family: 'Sarabun', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.8;
+            line-height: 1.7;
         }
 
-        .main-container {
-            max-width: 750px;
-            margin: 2rem auto;
-            padding: 1rem;
-        }
+        .main-container { max-width: 750px; margin: 2rem auto; padding: 1rem; }
+        .survey-card { background: var(--white); border-radius: var(--border-radius-lg); box-shadow: var(--shadow); overflow: hidden; opacity: 0; transform: translateY(20px); animation: fadeIn 0.6s forwards; }
+        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 
-        .survey-card {
-            background: var(--white);
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.6s forwards;
-        }
+        .survey-chapter { display: none; padding: 2rem 2.5rem; }
+        .survey-chapter.active { display: block; animation: slideIn 0.5s forwards; }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(15px); } to { opacity: 1; transform: translateX(0); } }
+
+        h2.chapter-title { font-weight: 700; color: var(--primary-color); margin-bottom: 0.5rem; }
+        p.chapter-subtitle { margin-bottom: 2rem; color: #6c757d; }
         
-        @keyframes fadeIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .survey-chapter {
-            display: none;
-            padding: 2rem 2.5rem;
-        }
-
-        .survey-chapter.active { 
-            display: block; 
-            animation: slideIn 0.5s forwards;
-        }
-        
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(15px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        h2.chapter-title {
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-        p.chapter-subtitle {
-            margin-bottom: 2rem;
-            color: #6c757d;
-        }
-        
-        .question-group { 
-            margin-bottom: 2.5rem; 
-            padding: 1rem;
-            border-radius: var(--border-radius-md);
-            border: 2px solid transparent;
-            transition: var(--transition);
-        }
-
-        .question-group.invalid {
-            animation: shake 0.5s;
-            border-color: var(--danger-color);
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
+        .question-group { margin-bottom: 2.5rem; padding: 1.25rem; border-radius: var(--border-radius-md); border: 2px solid transparent; transition: var(--transition); background-color: #fcfdff; }
+        .question-group.invalid { animation: shake 0.5s; border-color: var(--danger-color); }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
 
         .form-label { font-weight: 600; font-size: 1.1rem; margin-bottom: 1rem; }
-
-        /* Custom Input Styles */
-        .image-card-selector { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-        .image-card { border: 2px solid var(--light-gray); border-radius: var(--border-radius-md); padding: 1rem; text-align: center; cursor: pointer; transition: var(--transition); position: relative; }
-        .image-card img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem; }
-        .image-card .form-check-input { position: absolute; top: 10px; right: 10px; width: 1.5em; height: 1.5em; }
-        .image-card:hover { transform: translateY(-5px); border-color: var(--secondary-color); }
-        input[type="radio"]:checked + .image-card { border-color: var(--primary-color); background-color: #F7F9FC; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-
-        .choice-selector .form-check { margin-bottom: 0.5rem; }
-        .choice-selector .form-check-input { margin-top: 0.4em; }
-
+        .form-text { font-size: 0.9rem; }
+        .choice-selector .form-check { margin-bottom: 0.75rem; }
         .slider-container { text-align: center; }
-        .slider-container input[type="range"] { width: 100%; }
         .slider-labels { display: flex; justify-content: space-between; font-size: 0.9rem; color: #888; margin-top: 0.5rem; }
-        
-        .icon-checkbox-group .form-check { display: flex; align-items: center; margin-bottom: 0.75rem; }
-        .icon-checkbox-group .icon { margin-right: 10px; color: var(--primary-color); width: 20px; text-align: center; }
-        
-        .info-table {
-            background-color: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: var(--border-radius-md);
-            font-size: 0.9rem;
-        }
-        .info-table th, .info-table td {
-            text-align: center;
-        }
+        .slider-value { color: var(--primary-color); font-weight: bold; font-size: 1.5rem; }
 
-        /* Navigation & Progress */
         .progress-container { padding: 1.5rem 2.5rem 0.5rem; }
         .progress { height: 8px; border-radius: 4px; background-color: var(--light-gray); }
         .progress-bar { background: linear-gradient(90deg, var(--secondary-color), var(--primary-color)); }
@@ -133,28 +60,13 @@
         .navigation-footer { padding: 1.5rem 2.5rem; background-color: #F7F9FC; border-top: 1px solid var(--light-gray); }
         .btn-custom { padding: 0.8rem 1.8rem; font-weight: 600; border-radius: var(--border-radius-md); transition: var(--transition); border: none; }
         .btn-next { background-color: var(--primary-color); color: var(--white); }
-        .btn-next:hover { background-color: #3b5699; }
         .btn-prev { background-color: var(--light-gray); color: var(--text-color); }
 
-        /* Blueprint/Report Section */
-        #blueprint-container, #final-blueprint-container { text-align: center; padding: 3rem 1.5rem; }
-        .gemini-report h3 { color: var(--primary-color); font-weight: bold; margin-top: 2rem; }
-        .gemini-report h4 { font-weight: 600; margin-top: 1.5rem; }
+        #final-cta-section, #deep-dive-cta { background-color: var(--light-gray); padding: 2rem; border-radius: var(--border-radius-md); margin-top: 2rem; text-align: center; }
         .gemini-report .report-section { background: var(--white); padding: 1.5rem; border-radius: var(--border-radius-md); margin-bottom: 1rem; text-align: left; border-left: 5px solid; }
-        
-        #deep-dive-cta {
-            background-color: #e9ecef;
-            padding: 2rem;
-            border-radius: var(--border-radius-md);
-            text-align: center;
-        }
-        
-        /* CTA Section */
-        #final-cta-section { background-color: var(--light-gray); padding: 2rem; border-radius: var(--border-radius-md); margin-top: 2rem; }
-        #final-cta-section h4 { font-weight: 600; margin-bottom: 1.5rem; }
-        .cta-btn { width: 100%; text-align: left; padding: 1rem; margin-bottom: 0.75rem; background-color: var(--white); border-radius: var(--border-radius-md); }
-        .cta-btn .cta-title { font-weight: 600; }
-        .cta-btn .cta-desc { font-size: 0.9rem; }
+
+        .other-input { margin-top: 0.5rem; }
+        .form-check-inline { margin-right: 1rem; }
 
     </style>
 </head>
@@ -165,386 +77,404 @@
 
             <!-- Welcome Screen (Chapter 0) -->
             <div id="chapter-0" class="survey-chapter active text-center">
-                <i class="fas fa-map-signs fa-3x mb-4" style="color: var(--primary-color);"></i>
-                <h2 class="chapter-title">เริ่มต้นการเดินทางสู่ "พิมพ์เขียวแห่งชีวิต"</h2>
-                <p class="text-muted">มาใช้เวลาสั้นๆ เพื่อสำรวจเส้นทางชีวิตของคุณ ทั้งในปัจจุบันและอนาคตที่วาดฝันไว้ แบบสอบถามนี้จะช่วยให้คุณมองเห็นภาพรวมและเตรียมพร้อมสำหรับทุกก้าวต่อไป</p>
-                <button id="startButton" class="btn btn-custom btn-next mt-4">เริ่มต้นกันเลย!</button>
+                <i class="fas fa-file-alt fa-3x mb-4" style="color: var(--primary-color);"></i>
+                <h2 class="chapter-title">แบบสอบถามแผนชีวิตรายบุคคล</h2>
+                <p class="text-muted px-3">สวัสดีค่ะ ขออนุญาตเก็บข้อมูลเพื่อใช้วิเคราะห์และวางแผนการเงินที่เหมาะสมกับคุณโดยเฉพาะ ข้อมูลทั้งหมดจะถูกเก็บเป็นความลับค่ะ</p>
+                <button id="startButton" class="btn btn-custom btn-next mt-4">เริ่มต้นทำแบบสอบถาม</button>
             </div>
 
             <form id="surveyForm" novalidate>
-                <!-- Progress Bar (shown after start) -->
+                <!-- Progress Bar -->
                 <div id="progress-wrapper" class="progress-container d-none">
                     <div class="d-flex justify-content-between mb-1">
                         <span id="chapterName" class="fw-bold" style="color: var(--primary-color);"></span>
                         <span id="chapterCounter"></span>
                     </div>
-                    <div class="progress">
-                        <div id="progressBar" class="progress-bar" role="progressbar"></div>
-                    </div>
+                    <div class="progress"><div id="progressBar" class="progress-bar" role="progressbar"></div></div>
                 </div>
 
-                <!-- Chapter 1: Your Current Snapshot -->
-                <div id="chapter-1" class="survey-chapter" data-name="ภาพร่างปัจจุบัน">
-                    <h2 class="chapter-title">Chapter 1: ภาพร่างปัจจุบันของคุณ</h2>
+                <!-- Chapter 1: สำรวจตัวเอง -->
+                <div id="chapter-1" class="survey-chapter" data-name="มาสำรวจตัวเองกันเถอะ">
+                    <h2 class="chapter-title">Chapter 1: มาสำรวจตัวเองกันเถอะ</h2>
                     <p class="chapter-subtitle">มาเริ่มทำความเข้าใจไลฟ์สไตล์และภาพรวมของคุณกันก่อน</p>
                     <div class="question-group">
-                        <label class="form-label">1. ไลฟ์สไตล์ที่ใกล้เคียงกับคุณที่สุดในตอนนี้คือ?</label>
-                        <div class="image-card-selector">
-                            <div><input type="radio" class="form-check-input" name="lifestyle" value="นักรบออฟฟิศ" id="lifestyle1" required><label for="lifestyle1" class="image-card"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=400&auto=format&fit=crop" alt="Office Worker"><span>นักรบออฟฟิศ</span></label></div>
-                            <div><input type="radio" class="form-check-input" name="lifestyle" value="ฟรีแลนซ์/สายชิล" id="lifestyle2"><label for="lifestyle2" class="image-card"><img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=400&auto=format&fit=crop" alt="Freelancer"><span>ฟรีแลนซ์/สายชิล</span></label></div>
-                            <div><input type="radio" class="form-check-input" name="lifestyle" value="เจ้าของธุรกิจ" id="lifestyle3"><label for="lifestyle3" class="image-card"><img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=400&auto=format&fit=crop" alt="Business Owner"><span>เจ้าของธุรกิจ</span></label></div>
-                            <div><input type="radio" class="form-check-input" name="lifestyle" value="คุณพ่อ/คุณแม่ฟูลไทม์" id="lifestyle4"><label for="lifestyle4" class="image-card"><img src="https://i.ibb.co/nMDpBcdj/family-showcasing-their-home.jpg?q=80&w=400&auto=format&fit=crop" alt="Full-time Parent"><span>คุณพ่อ/คุณแม่</span></label></div>
+                        <label class="form-label">1. สถานการณ์ตอนนี้คุณเป็นอย่างไร?</label>
+                        <div class="choice-selector">
+                            <div class="form-check"><input class="form-check-input" type="radio" name="lifestyle" value="สายชิว work life ต้อง balance" id="lifestyle1" required><label for="lifestyle1">สายชิว work life ต้อง balance</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="lifestyle" value="นักรบออฟฟิศ" id="lifestyle2"><label for="lifestyle2">นักรบออฟฟิศ คาเฟอีนมีเท่าไหร่เอามาเลย</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="lifestyle" value="อายุน้อย ร้อยอาชีพ" id="lifestyle3"><label for="lifestyle3">อายุน้อย ร้อยอาชีพ</label></div>
                         </div>
                     </div>
                     <div class="question-group">
-                        <label for="work_life_balance" class="form-label">2. คุณให้คะแนน Work-Life Balance ของตัวเองเท่าไหร่?</label>
+                        <label for="mental_state" class="form-label">2. สภาวะจิตใจคุณเป็นอย่างไรช่วงนี้ (1-2 อาทิตย์ที่ผ่านมา)?</label>
                         <div class="slider-container">
-                             <div class="d-flex justify-content-center align-items-center mb-2">
-                                 <span class="fw-bold fs-4 me-3" style="color: var(--primary-color);" id="wlb-value-display">5</span>
-                             </div>
-                            <input type="range" class="form-range" id="work_life_balance" name="work_life_balance" min="0" max="10" step="1" value="5">
-                            <div class="slider-labels"><span>ต้องการกาแฟด่วน!</span><span>สบายๆ ชิลๆ</span></div>
+                            <span class="slider-value" id="mental_state_value">3</span>
+                            <input type="range" class="form-range" id="mental_state" name="mental_state" min="1" max="5" step="1" value="3">
+                            <div class="slider-labels"><span>ไม่ไหวแล้วแต่ต้องสู้</span><span>ดีมาก Omg</span></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Chapter 2: Your Inner Circle -->
-                <div id="chapter-2" class="survey-chapter" data-name="คนสำคัญในชีวิต">
+                <!-- Chapter 2: คนสำคัญในชีวิต -->
+                <div id="chapter-2" class="survey-chapter" data-name="คนสำคัญในชีวิตของคุณ">
                     <h2 class="chapter-title">Chapter 2: คนสำคัญในชีวิตของคุณ</h2>
                     <p class="chapter-subtitle">ใครคือคนที่คุณห่วงใยและอยากดูแลให้ดีที่สุด</p>
                     <div class="question-group">
-                         <label class="form-label">1. ใครคือคนสำคัญที่อยู่ในความดูแลของคุณ?</label>
-                         <div class="icon-checkbox-group">
-                             <div class="form-check"><input class="form-check-input" type="checkbox" name="dependents" value="ตัวเราเองในอนาคต" id="dep1"><label class="form-check-label" for="dep1"><i class="fas fa-user-clock icon"></i>ตัวเราเองในอนาคต</label></div>
-                             <div class="form-check"><input class="form-check-input" type="checkbox" name="dependents" value="คู่สมรส" id="dep2"><label class="form-check-label" for="dep2"><i class="fas fa-heart icon"></i>คู่สมรส</label></div>
-                             <div class="form-check"><input class="form-check-input" type="checkbox" name="dependents" value="ลูก" id="dep3"><label class="form-check-label" for="dep3"><i class="fas fa-child icon"></i>ลูก</label></div>
-                             <div class="form-check"><input class="form-check-input" type="checkbox" name="dependents" value="คุณพ่อคุณแม่" id="dep4"><label class="form-check-label" for="dep4"><i class="fas fa-user-friends icon"></i>คุณพ่อคุณแม่</label></div>
-                             <div class="form-check"><input class="form-check-input" type="checkbox" name="dependents" value="ไม่มีภาระดูแลใคร" id="dep5"><label class="form-check-label" for="dep5"><i class="fas fa-coffee icon"></i>ยังโสด/ไม่มีภาระ</label></div>
-                         </div>
-                    </div>
-                    <!-- Hidden questions for children -->
-                    <div id="children_questions" class="question-group d-none">
-                         <label class="form-label">ข้อมูลเกี่ยวกับบุตร</label>
-                         <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="children_count" class="form-label-sm">จำนวนบุตร (คน)</label>
-                                <input type="number" class="form-control" name="children_count" id="children_count" min="1" placeholder="1">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="children_ages" class="form-label-sm">อายุของบุตร (เช่น 5, 10)</label>
-                                <input type="text" class="form-control" name="children_ages" id="children_ages" placeholder="5, 10">
-                            </div>
-                         </div>
-                    </div>
-                    <div class="question-group">
-                        <label for="legacy" class="form-label">2. คุณอยากมอบอะไรเป็นมรดกให้คนข้างหลัง (นอกเหนือจากเงิน)?</label>
-                        <textarea class="form-control" name="legacy" id="legacy" rows="3" placeholder="เช่น ความรู้, ธุรกิจครอบครัว, ความมั่นคง..."></textarea>
-                    </div>
-                </div>
-
-                <!-- Chapter 3: Your Future Goals -->
-                <div id="chapter-3" class="survey-chapter" data-name="เป้าหมายในอนาคต">
-                    <h2 class="chapter-title">Chapter 3: ภาพฝันและเป้าหมายในอนาคต</h2>
-                    <p class="chapter-subtitle">มาดูเป้าหมายที่คุณอยากไปให้ถึงกัน</p>
-                    <div class="question-group">
-                        <label class="form-label">1. อีก 10 ปีข้างหน้า คุณอยากเห็นตัวเองอยู่ที่ไหน?</label>
-                        <div class="image-card-selector">
-                              <div><input type="radio" class="form-check-input" name="ten_year_vision" value="มีบ้านในฝัน" id="vision1" required><label for="vision1" class="image-card"><img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=400&auto=format&fit=crop" alt="Dream House"><span>มีบ้านในฝัน</span></label></div>
-                              <div><input type="radio" class="form-check-input" name="ten_year_vision" value="ท่องเที่ยวรอบโลก" id="vision2"><label for="vision2" class="image-card"><img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?q=80&w=400&auto=format&fit=crop" alt="Travel"><span>ท่องเที่ยวรอบโลก</span></label></div>
-                              <div><input type="radio" class="form-check-input" name="ten_year_vision" value="เป็นเจ้าของธุรกิจ" id="vision3"><label for="vision3" class="image-card"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=400&auto=format&fit=crop" alt="Business"><span>เป็นเจ้าของธุรกิจ</span></label></div>
-                              <div><input type="radio" class="form-check-input" name="ten_year_vision" value="เกษียณอย่างมีความสุข" id="vision4"><label for="vision4" class="image-card"><img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=400&auto=format&fit=crop" alt="Retirement"><span>เกษียณอย่างมีความสุข</span></label></div>
-                        </div>
-                    </div>
-                    <div class="question-group">
-                        <label class="form-label">2. หากมีเงินก้อนหนึ่ง คุณจะนำไปทำอะไรเป็นอย่างแรก?</label>
+                        <label class="form-label">3. ใครคนสำคัญที่อยู่ในการดูแลของคุณ?</label>
                         <div class="choice-selector">
-                           <div class="form-check"><input class="form-check-input" type="radio" name="lump_sum_action" id="lsa1" value="ลงทุน" required><label class="form-check-label" for="lsa1">ลงทุนให้งอกเงย</label></div>
-                           <div class="form-check"><input class="form-check-input" type="radio" name="lump_sum_action" id="lsa2" value="ปิดหนี้"><label class="form-check-label" for="lsa2">ปิดหนี้สิน</label></div>
-                           <div class="form-check"><input class="form-check-input" type="radio" name="lump_sum_action" id="lsa3" value="ให้รางวัลชีวิต"><label class="form-check-label" for="lsa3">ให้รางวัลชีวิต</label></div>
-                           <div class="form-check"><input class="form-check-input" type="radio" name="lump_sum_action" id="lsa4" value="เก็บสำรองฉุกเฉิน"><label class="form-check-label" for="lsa4">เก็บเป็นเงินสำรองฉุกเฉิน</label></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="dependents" value="ตัวเองในอนาคต" id="dep1"><label for="dep1">ตัวเองในอนาคต</label></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="dependents" value="คุณพ่อ คุณแม่" id="dep2"><label for="dep2">คุณพ่อ คุณแม่</label></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="dependents" value="สัตว์เลี้ยง" id="dep3"><label for="dep3">สัตว์เลี้ยง</label></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="dependents" value="แฟน หรือ คู่สมรส" id="dep4"><label for="dep4">แฟน หรือ คู่สมรส</label></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="dependents" value="ลูก" id="dep5"><label for="dep5">ลูก</label></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" data-other-target="dependents_other" id="dep_other_cb"><label for="dep_other_cb">อื่นๆ:</label></div>
+                            <input type="text" class="form-control other-input d-none" name="dependents_other" id="dependents_other" placeholder="โปรดระบุ">
                         </div>
+                    </div>
+                    <div class="question-group">
+                        <label for="legacy" class="form-label">4. คุณอยากมอบอะไรเป็นมรดกให้คนข้างหลัง (นอกเหนือจากเงิน)?</label>
+                        <textarea class="form-control" name="legacy" id="legacy" rows="3"></textarea>
                     </div>
                 </div>
 
-                <!-- Chapter 4: Navigating Life's 'What Ifs' -->
-                <div id="chapter-4" class="survey-chapter" data-name="รับมือเรื่องไม่คาดฝัน">
+                <!-- Chapter 3: เป้าหมายในอนาคต -->
+                <div id="chapter-3" class="survey-chapter" data-name="ภาพฝันและเป้าหมายในอนาคต">
+                     <h2 class="chapter-title">Chapter 3: ภาพฝันและเป้าหมายในอนาคต</h2>
+                     <p class="chapter-subtitle">มาดูเป้าหมายที่คุณอยากไปให้ถึงกัน</p>
+                     <div class="question-group">
+                        <label class="form-label">5. อีก 10 ปีข้างหน้า คุณมองเห็นอนาคตตัวเองเป็นอย่างไร</label>
+                         <div class="choice-selector">
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="ten_year_vision" value="มีบ้านในฝัน" id="vision1"><label for="vision1">มีบ้านในฝัน</label></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="ten_year_vision" value="เกษียณอย่างมีความสุข" id="vision2"><label for="vision2">เกษียณอย่างมีความสุข</label></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="ten_year_vision" value="ท่องเที่ยวรอบโลก" id="vision3"><label for="vision3">ท่องเที่ยวรอบโลก</label></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="ten_year_vision" value="เป็นเจ้าของธุรกิจ" id="vision4"><label for="vision4">เป็นเจ้าของธุรกิจ</label></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="ten_year_vision" value="ส่งลูกเรียนให้จบแบบที่ใฝ่ฝัน" id="vision5"><label for="vision5">ส่งลูกเรียนให้จบแบบที่ใฝ่ฝัน</label></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" data-other-target="ten_year_vision_other" id="vision_other_cb"><label for="vision_other_cb">อื่นๆ:</label></div>
+                            <input type="text" class="form-control other-input d-none" name="ten_year_vision_other" id="ten_year_vision_other" placeholder="โปรดระบุ">
+                         </div>
+                     </div>
+                     <div class="question-group">
+                         <label class="form-label">6. แล้วตอนนี้คุณได้เริ่มทำอะไรบางอย่างเพื่อบรรลุเป้าหมายแล้วหรือยัง?</label>
+                         <div class="choice-selector">
+                             <div class="form-check"><input class="form-check-input" type="radio" name="goal_started" value="เริ่มแล้ว" id="goal_started_yes" required><label for="goal_started_yes">เริ่มแล้วจ้า</label></div>
+                             <div class="form-check"><input class="form-check-input" type="radio" name="goal_started" value="ยังเลย" id="goal_started_no"><label for="goal_started_no">ยังเลย</label></div>
+                         </div>
+                     </div>
+                     <div class="question-group d-none" id="goal_progress_group">
+                        <label for="goal_progress" class="form-label">7. ถ้าคุณตอบเริ่มทำเป้าหมาย ตอนนี้เป้าหมายนั้นดำเนินไปได้กี่ % แล้ว?</label>
+                         <div class="slider-container">
+                             <span class="slider-value" id="goal_progress_value">50%</span>
+                             <input type="range" class="form-range" id="goal_progress" name="goal_progress" min="0" max="100" step="10" value="50">
+                             <div class="slider-labels"><span>0%</span><span>100%</span></div>
+                         </div>
+                     </div>
+                </div>
+
+                <!-- Chapter 4: รับมือเรื่องไม่คาดฝัน -->
+                <div id="chapter-4" class="survey-chapter" data-name="เตรียมพร้อมรับมือเรื่องไม่คาดฝัน">
                     <h2 class="chapter-title">Chapter 4: เตรียมพร้อมรับมือเรื่องไม่คาดฝัน</h2>
                     <p class="chapter-subtitle">ลองจินตนาการถึงสถานการณ์ที่อาจเกิดขึ้น</p>
                     <div class="question-group">
-                         <label class="form-label">1. หากพรุ่งนี้ต้องเข้ารักษาตัวในโรงพยาบาล สิ่งที่คุณกังวลที่สุดคืออะไร?</label>
-                         <div class="icon-checkbox-group">
-                             <div class="form-check"><input class="form-check-input" type="checkbox" name="hospital_worry" value="ค่ารักษาพยาบาล" id="hw1"><label class="form-check-label" for="hw1"><i class="fas fa-file-invoice-dollar icon"></i>ค่ารักษาพยาบาล</label></div>
-                             <div class="form-check"><input class="form-check-input" type="checkbox" name="hospital_worry" value="ขาดรายได้" id="hw2"><label class="form-check-label" for="hw2"><i class="fas fa-briefcase-medical icon"></i>ขาดรายได้ช่วงที่พักฟื้น</label></div>
-                             <div class="form-check"><input class="form-check-input" type="checkbox" name="hospital_worry" value="ไม่มีคนดูแลครอบครัว" id="hw3"><label class="form-check-label" for="hw3"><i class="fas fa-users-slash icon"></i>ไม่มีคนดูแลครอบครัว</label></div>
-                         </div>
+                        <label class="form-label">8. หากมีเงินก้อนหนึ่ง คุณจะนำไปทำอะไรเป็นอย่างแรก?</label>
+                        <div class="choice-selector">
+                            <div class="form-check"><input class="form-check-input" type="radio" name="lump_sum_action" value="เก็บเป็นเงินฉุกเฉิน" id="lsa1" required><label for="lsa1">เก็บเป็นเงินฉุกเฉิน</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="lump_sum_action" value="ปิดหนี้สิน" id="lsa2"><label for="lsa2">ปิดหนี้สิน</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="lump_sum_action" value="ลงทุนให้งอกเงย" id="lsa3"><label for="lsa3">ลงทุนให้งอกเงย</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="lump_sum_action" value="ให้รางวัลชีวิต" id="lsa4"><label for="lsa4">ให้รางวัลชีวิต</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="lump_sum_action" value="อื่นๆ" data-other-target="lump_sum_action_other" id="lsa_other_cb"><label for="lsa_other_cb">อื่นๆ:</label></div>
+                            <input type="text" class="form-control other-input d-none" name="lump_sum_action_other" id="lump_sum_action_other" placeholder="โปรดระบุ">
+                        </div>
                     </div>
                     <div class="question-group">
-                        <label for="emergency_fund" class="form-label">2. คุณมีเงินสำรองฉุกเฉินเพียงพอสำหรับค่าใช้จ่ายกี่เดือน?</label>
-                        <div class="slider-container">
-                            <div class="d-flex justify-content-center align-items-center mb-2">
-                                <span class="fw-bold fs-4 me-2" style="color: var(--primary-color);" id="ef-value-display">3</span>
-                                <span>เดือน</span>
-                            </div>
-                            <input type="range" class="form-range" id="emergency_fund" name="emergency_fund" min="0" max="12" step="1" value="3">
-                            <div class="slider-labels"><span>0 เดือน</span><span>12+ เดือน</span></div>
+                        <label class="form-label">9. หากพรุ่งนี้ต้องเข้ารักษาตัวในโรงพยาบาล สิ่งที่คุณกังวลที่สุดคืออะไร?</label>
+                        <div class="choice-selector">
+                           <div class="form-check"><input class="form-check-input" type="checkbox" name="hospital_worry" value="ค่ารักษาพยาบาล" id="hw1"><label for="hw1">ค่ารักษาพยาบาล</label></div>
+                           <div class="form-check"><input class="form-check-input" type="checkbox" name="hospital_worry" value="ขาดรายได้ช่วงที่พักฟื้น" id="hw2"><label for="hw2">ขาดรายได้ช่วงที่พักฟื้น</label></div>
+                           <div class="form-check"><input class="form-check-input" type="checkbox" name="hospital_worry" value="ไม่มีใครดูแลและซับพอร์ตครอบครัวเรื่องเงิน" id="hw3"><label for="hw3">ไม่มีใครดูแลและซับพอร์ตครอบครัวเรื่องเงิน</label></div>
                         </div>
                     </div>
+                     <div class="question-group">
+                        <label for="emergency_fund" class="form-label">10. หากรายได้หลักหยุดลงวันนี้ เงินฉุกเฉินที่มีอยู่จะช่วยให้คุณใช้ชีวิตแบบเดิมได้นานที่สุดกี่เดือน?</label>
+                         <div class="slider-container">
+                             <span class="slider-value" id="emergency_fund_value">5 เดือน</span>
+                             <input type="range" class="form-range" id="emergency_fund" name="emergency_fund" min="0" max="10" step="1" value="5">
+                             <div class="slider-labels"><span>0 เดือน</span><span>10+ เดือน</span></div>
+                         </div>
+                     </div>
                 </div>
-                
-                <!-- Chapter 5: Initial Blueprint Result Screen (MOVED HERE) -->
-                <div id="chapter-5" class="survey-chapter" data-name="พิมพ์เขียวฉบับร่าง">
-                    <div id="blueprint-container">
-                        <div id="loading-spinner">
-                            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                                <span class="visually-hidden">Loading...</span>
-                            </div>
-                            <p class="mt-3">กำลังสร้างพิมพ์เขียวฉบับร่างสำหรับคุณ...</p>
-                        </div>
-                        <div id="gemini-report" class="d-none gemini-report">
-                            <!-- Gemini AI Report will be injected here -->
-                        </div>
+
+                <!-- Chapter 5: DRAFT REPORT -->
+                <div id="chapter-5" class="survey-chapter text-center" data-name="รายงานฉบับร่าง">
+                    <div id="draft-report-container">
+                         <div id="loading-spinner-draft">
+                             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                                 <span class="visually-hidden">Loading...</span>
+                             </div>
+                             <p class="mt-3">กำลังสร้างรายงานฉบับร่างสำหรับคุณ...</p>
+                         </div>
+                         <div id="gemini-report-draft" class="d-none gemini-report">
+                             <!-- Draft Gemini AI Report will be injected here -->
+                         </div>
                     </div>
-                    
-                    <div id="deep-dive-cta" class="d-none mt-4">
+                    <div id="deep-dive-cta" class="d-none">
                          <h4 class="fw-bold">คุณมาได้ครึ่งทางแล้ว!</h4>
-                         <p class="text-muted">ข้อมูลเบื้องต้นของคุณช่วยให้เราเห็นภาพรวมที่ยอดเยี่ยม อยากลงลึกในรายละเอียดเพื่อสร้าง "พิมพ์เขียวฉบับสมบูรณ์" ที่ออกแบบมาเพื่อคุณโดยเฉพาะหรือไม่?</p>
+                         <p class="text-muted">อยากลงลึกในรายละเอียดเพื่อสร้าง "พิมพ์เขียวฉบับสมบูรณ์" ที่ออกแบบมาเพื่อคุณโดยเฉพาะหรือไม่?</p>
                          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                              <button id="continueButton" type="button" class="btn btn-primary btn-lg px-4 gap-3">ไปต่อเลย!</button>
-                             <button id="stopButton" type="button" class="btn btn-outline-secondary btn-lg px-4">ขอรับข้อมูลเท่านี้ก่อน</button>
+                             <button id="stopButton" type="button" class="btn btn-outline-secondary btn-lg px-4">พอแค่นี้ก่อน</button>
                          </div>
                     </div>
                 </div>
 
-                <!-- Chapter 6: Your Financial Foundation -->
+                <!-- Chapter 6: เจาะลึกด้านการเงิน -->
                 <div id="chapter-6" class="survey-chapter" data-name="เจาะลึกด้านการเงิน">
                      <h2 class="chapter-title">Chapter 5: เจาะลึกด้านการเงิน</h2>
                      <p class="chapter-subtitle">ข้อมูลส่วนนี้จะช่วยให้เราวางแผนได้แม่นยำยิ่งขึ้น</p>
                      <div class="question-group">
-                         <label class="form-label">1. รายได้หลักต่อเดือน (หลังหักภาษี) อยู่ในช่วงใด?</label>
+                         <label class="form-label">12. รายได้หลักต่อเดือน (หลังหักภาษี) อยู่ในช่วงใด?</label>
                           <div class="choice-selector">
-                             <div class="form-check"><input class="form-check-input" type="radio" name="income_range" id="ir1" value="ต่ำกว่า 25,000 บาท" required><label class="form-check-label" for="ir1">ต่ำกว่า 25,000 บาท</label></div>
-                             <div class="form-check"><input class="form-check-input" type="radio" name="income_range" id="ir2" value="25,001 - 50,000 บาท"><label class="form-check-label" for="ir2">25,001 - 50,000 บาท</label></div>
-                             <div class="form-check"><input class="form-check-input" type="radio" name="income_range" id="ir3" value="50,001 - 80,000 บาท"><label class="form-check-label" for="ir3">50,001 - 80,000 บาท</label></div>
-                             <div class="form-check"><input class="form-check-input" type="radio" name="income_range" id="ir4" value="80,001 - 150,000 บาท"><label class="form-check-label" for="ir4">80,001 - 150,000 บาท</label></div>
-                             <div class="form-check"><input class="form-check-input" type="radio" name="income_range" id="ir5" value="มากกว่า 150,000 บาท"><label class="form-check-label" for="ir5">มากกว่า 150,000 บาท</label></div>
+                             <div class="form-check"><input class="form-check-input" type="radio" name="income_range" id="ir1" value="ต่ำกว่า 25,000 บาท" required><label for="ir1">ต่ำกว่า 25,000 บาท</label></div>
+                             <div class="form-check"><input class="form-check-input" type="radio" name="income_range" id="ir2" value="25,001-50,000 บาท"><label for="ir2">25,001-50,000 บาท</label></div>
+                             <div class="form-check"><input class="form-check-input" type="radio" name="income_range" id="ir3" value="50,001-80,000 บาท"><label for="ir3">50,001-80,000 บาท</label></div>
+                             <div class="form-check"><input class="form-check-input" type="radio" name="income_range" id="ir4" value="80,001-150,000 บาท"><label for="ir4">80,001-150,000 บาท</label></div>
+                             <div class="form-check"><input class="form-check-input" type="radio" name="income_range" id="ir5" value="มากกว่า 150,000 บาท"><label for="ir5">มากกว่า 150,000 บาท</label></div>
                           </div>
                      </div>
                      <div class="question-group">
-                         <label class="form-label">2. คุณสะดวกที่จะแบ่งเงินมาออม "เพื่อเป้าหมายในอนาคต" เดือนละเท่าไหร่?</label>
+                         <label class="form-label">13. คุณสะดวกที่จะแบ่งเงินมาออม "เพื่อเป้าหมายในอนาคต" เดือนละเท่าไหร่?</label>
                          <div class="choice-selector">
-                            <div class="form-check"><input class="form-check-input" type="radio" name="saving_potential" id="sp1" value="น้อยกว่า 3,000 บาท" required><label class="form-check-label" for="sp1">น้อยกว่า 3,000 บาท</label></div>
-                            <div class="form-check"><input class="form-check-input" type="radio" name="saving_potential" id="sp2" value="3,001 - 7,000 บาท"><label class="form-check-label" for="sp2">3,001 - 7,000 บาท</label></div>
-                            <div class="form-check"><input class="form-check-input" type="radio" name="saving_potential" id="sp3" value="7,001 - 15,000 บาท"><label class="form-check-label" for="sp3">7,001 - 15,000 บาท</label></div>
-                            <div class="form-check"><input class="form-check-input" type="radio" name="saving_potential" id="sp4" value="15,001 - 25,000 บาท"><label class="form-check-label" for="sp4">15,001 - 25,000 บาท</label></div>
-                            <div class="form-check"><input class="form-check-input" type="radio" name="saving_potential" id="sp5" value="มากกว่า 25,000 บาท"><label class="form-check-label" for="sp5">มากกว่า 25,000 บาท</label></div>
-                            <div class="form-check"><input class="form-check-input" type="radio" name="saving_potential" id="sp6" value="ยังไม่แน่ใจ"><label class="form-check-label" for="sp6">ยังไม่แน่ใจ อยากปรึกษาก่อน</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="saving_potential" id="sp1" value="น้อยกว่า 3,000 บาท" required><label for="sp1">น้อยกว่า 3,000 บาท</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="saving_potential" id="sp2" value="3,001 - 7,000 บาท"><label for="sp2">3,001 - 7,000 บาท</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="saving_potential" id="sp3" value="7,001-15,000 บาท"><label for="sp3">7,001-15,000 บาท</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="saving_potential" id="sp4" value="15,001-25,000 บาท"><label for="sp4">15,001-25,000 บาท</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="saving_potential" id="sp5" value="มากกว่า 25,000 บาท"><label for="sp5">มากกว่า 25,000 บาท</label></div>
+                             <div class="form-check"><input class="form-check-input" type="radio" name="saving_potential" id="sp6" value="ยังไม่แน่ใจ อยากปรึกษาก่อน"><label for="sp6">ยังไม่แน่ใจ อยากปรึกษาก่อน</label></div>
                          </div>
                      </div>
-                     <div class="question-group">
-                         <label class="form-label">3. โปรดจัดลำดับความสำคัญในชีวิตของคุณ (ลากเพื่อจัดลำดับ)</label>
-                         <ul id="sortable-priorities" class="list-group">
+                    <div class="question-group">
+                        <label class="form-label">14. โปรดจัดลำดับความสำคัญในชีวิตของคุณ</label>
+                        <p class="form-text">ลากเพื่อจัดลำดับ โดยสิ่งที่สำคัญที่สุดอยู่ด้านบน</p>
+                        <ul id="sortable-priorities" class="list-group">
+                             <li class="list-group-item">การสร้างอนาคตที่ดีให้กับลูก</li>
                              <li class="list-group-item">การมีเงินพอใช้สุขสบายหลังเกษียณ</li>
-                             <li class="list-group-item">การสร้างอนาคตและการศึกษาที่ดีที่สุดให้ลูก</li>
-                             <li class="list-group-item">การดูแลสุขภาพของตัวเองและครอบครัวอย่างดีที่สุด</li>
-                             <li class="list-group-item">การดูแลคุณพ่อคุณแม่ให้สุขสบาย</li>
                              <li class="list-group-item">การมีอิสรภาพทางการเงินก่อนอายุที่กำหนด</li>
-                         </ul>
+                             <li class="list-group-item">การมีแผนดูแลสุขภาพให้ตัวเองหรือครอบครัวให้ดีที่สุด</li>
+                        </ul>
                          <input type="hidden" name="priorities_order" id="priorities_order">
-                     </div>
+                    </div>
                 </div>
 
-                <!-- Chapter 7: Your Health & Well-being -->
-                <div id="chapter-7" class="survey-chapter" data-name="สุขภาพและความเสี่ยง">
+                <!-- Chapter 7: สุขภาพและความเสี่ยง -->
+                <div id="chapter-7" class="survey-chapter" data-name="สุขภาพและความเสี่ยงรอบตัว">
                     <h2 class="chapter-title">Chapter 6: สุขภาพและความเสี่ยงรอบตัว</h2>
                     <p class="chapter-subtitle">สุขภาพที่ดีคือรากฐานสำคัญของความสุข</p>
                     <div class="question-group">
-                        <label class="form-label">1. สุขภาพโดยรวมของคุณในปัจจุบันเป็นอย่างไร?</label>
+                        <label class="form-label">15. สุขภาพโดยรวมของคุณในปัจจุบันเป็นอย่างไร?</label>
                         <div class="choice-selector">
-                           <div class="form-check"><input class="form-check-input" type="radio" name="health_status" id="hs1" value="แข็งแรงดีมาก" required><label class="form-check-label" for="hs1">แข็งแรงดีมาก ไม่ค่อยเจ็บป่วย</label></div>
-                           <div class="form-check"><input class="form-check-input" type="radio" name="health_status" id="hs2" value="แข็งแรงดี มีป่วยเล็กน้อย"><label class="form-check-label" for="hs2">แข็งแรงดี มีป่วยเล็กน้อยตามฤดูกาล</label></div>
-                           <div class="form-check"><input class="form-check-input" type="radio" name="health_status" id="hs3" value="มีโรคประจำตัวที่ควบคุมได้"><label class="form-check-label" for="hs3">มีโรคประจำตัวที่ควบคุมได้</label></div>
-                           <div class="form-check"><input class="form-check-input" type="radio" name="health_status" id="hs4" value="มีปัญหาสุขภาพต้องพบแพทย์ประจำ"><label class="form-check-label" for="hs4">มีปัญหาสุขภาพที่ต้องพบแพทย์เป็นประจำ</label></div>
+                           <div class="form-check"><input class="form-check-input" type="radio" name="health_status" id="hs1" value="แข็งแรงดีมาก ไม่ค่อยเจ็บป่วย" required><label for="hs1">แข็งแรงดีมาก ไม่ค่อยเจ็บป่วย</label></div>
+                           <div class="form-check"><input class="form-check-input" type="radio" name="health_status" id="hs2" value="แข็งแรงดี มีป่วยเล็กน้อยตามฤดูกาล"><label for="hs2">แข็งแรงดี มีป่วยเล็กน้อยตามฤดูกาล</label></div>
+                           <div class="form-check"><input class="form-check-input" type="radio" name="health_status" id="hs3" value="มีโรคประจำตัวที่ควบคุมได้"><label for="hs3">มีโรคประจำตัวที่ควบคุมได้</label></div>
+                           <div class="form-check"><input class="form-check-input" type="radio" name="health_status" id="hs4" value="มีปัญหาสุขภาพที่ต้องพบแพทย์เป็นประจำ"><label for="hs4">มีปัญหาสุขภาพที่ต้องพบแพทย์เป็นประจำ</label></div>
                         </div>
                     </div>
                      <div class="question-group">
-                         <label class="form-label">2. คนในครอบครัวสายตรง (ปู่ย่าตายาย, พ่อแม่, พี่น้อง) มีประวัติเจ็บป่วยด้วยโรคเหล่านี้หรือไม่?</label>
-                         <div class="icon-checkbox-group">
-                            <div class="form-check"><input class="form-check-input" type="checkbox" name="family_history" value="ไม่มี" id="fh1"><label class="form-check-label" for="fh1">ไม่มี</label></div>
-                            <div class="form-check"><input class="form-check-input" type="checkbox" name="family_history" value="โรคมะเร็ง" id="fh2"><label class="form-check-label" for="fh2">โรคมะเร็ง</label></div>
-                            <div class="form-check"><input class="form-check-input" type="checkbox" name="family_history" value="โรคหัวใจ" id="fh3"><label class="form-check-label" for="fh3">โรคหัวใจและหลอดเลือด</label></div>
-                            <div class="form-check"><input class="form-check-input" type="checkbox" name="family_history" value="โรคเบาหวาน/ความดัน" id="fh4"><label class="form-check-label" for="fh4">โรคเบาหวาน / ความดันโลหิตสูง</label></div>
-                            <div class="form-check"><input class="form-check-input" type="checkbox" name="family_history" value="อื่นๆ" id="fh5"><label class="form-check-label" for="fh5">โรคร้ายแรงอื่นๆ</label></div>
+                         <label class="form-label">16. คนในครอบครัวสายตรง (ปู่ย่าตายาย, พ่อแม่, พี่น้อง) มีประวัติเจ็บป่วยด้วยโรคเหล่านี้หรือไม่?</label>
+                         <div class="choice-selector">
+                            <div class="form-check"><input class="form-check-input" type="radio" name="family_history" id="fh1" value="มะเร็งต่างๆ" required><label for="fh1">มะเร็งต่างๆ</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="family_history" id="fh2" value="โรคหัวใจและหลอดเลือด"><label for="fh2">โรคหัวใจและหลอดเลือด</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="family_history" id="fh3" value="เบาหวาน หรือ ความดันโลหิตสูง"><label for="fh3">เบาหวาน หรือ ความดันโลหิตสูง</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="family_history" value="อื่นๆ" data-other-target="family_history_other" id="fh_other_cb"><label for="fh_other_cb">อื่นๆ:</label></div>
+                            <input type="text" class="form-control other-input d-none" name="family_history_other" id="family_history_other" placeholder="โปรดระบุ">
                          </div>
                      </div>
                 </div>
-
-                <!-- Chapter 8: Your Current Safety Net -->
-                <div id="chapter-8" class="survey-chapter" data-name="ตาข่ายความปลอดภัย">
+                
+                <!-- Chapter 8: ตรวจสอบตาข่ายความปลอดภัย -->
+                <div id="chapter-8" class="survey-chapter" data-name="ตรวจสอบตาข่ายความปลอดภัยของคุณ">
                     <h2 class="chapter-title">Chapter 7: ตรวจสอบตาข่ายความปลอดภัยของคุณ</h2>
                     <p class="chapter-subtitle">มาดูกันว่าตอนนี้คุณมีเครื่องมืออะไรที่ช่วยป้องกันความเสี่ยงอยู่บ้าง</p>
                     <div class="question-group">
-                         <label class="form-label">1. ปัจจุบันคุณมีสวัสดิการหรือประกันอะไรบ้าง?</label>
-                         <div class="icon-checkbox-group">
-                             <div class="form-check"><input class="form-check-input" type="checkbox" name="current_coverage" value="ประกันสังคม" id="cc1"><label class="form-check-label" for="cc1"><i class="fas fa-landmark icon"></i>ประกันสังคม</label></div>
-                             <div class="form-check"><input class="form-check-input" type="checkbox" name="current_coverage" value="ประกันสุขภาพกลุ่ม" id="cc2"><label class="form-check-label" for="cc2"><i class="fas fa-building icon"></i>ประกันสุขภาพกลุ่มของบริษัท</label></div>
-                             <div class="form-check"><input class="form-check-input" type="checkbox" name="current_coverage" value="ประกันสุขภาพส่วนตัว" id="cc3"><label class="form-check-label" for="cc3"><i class="fas fa-user-shield icon"></i>ประกันสุขภาพส่วนตัว</label></div>
-                             <div class="form-check"><input class="form-check-input" type="checkbox" name="current_coverage" value="ประกันชีวิต" id="cc4"><label class="form-check-label" for="cc4"><i class="fas fa-file-contract icon"></i>ประกันชีวิต</label></div>
-                             <div class="form-check"><input class="form-check-input" type="checkbox" name="current_coverage" value="ประกันโรคร้ายแรง" id="cc5"><label class="form-check-label" for="cc5"><i class="fas fa-heart-pulse icon"></i>ประกันโรคร้ายแรง</label></div>
-                             <div class="form-check"><input class="form-check-input" type="checkbox" name="current_coverage" value="ยังไม่มีเลย" id="cc6"><label class="form-check-label" for="cc6"><i class="fas fa-times-circle icon"></i>ยังไม่มีเลย</label></div>
+                         <label class="form-label">17. ถ้าสักวันนึงคุณเกิดเข้าโรงพยาบาลขึ้นมา คุณจะเลือกเข้ารพ.แบบไหน?</label>
+                         <div class="choice-selector">
+                            <div class="form-check"><input class="form-check-input" type="radio" name="hospital_preference" id="hp1" value="รัฐบาล (ประกันสังคม)" required><label for="hp1">รัฐบาล (ประกันสังคม)</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="hospital_preference" id="hp2" value="เอกชนทั่วไปและรัฐพรีเมี่ยม"><label for="hp2">เอกชนทั่วไปและรัฐพรีเมี่ยม</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="hospital_preference" id="hp3" value="รพ.เครือ BDMS"><label for="hp3">รพ.เครือ BDMS เช่น รพ.สมิติเวช,พญาไท,เปาโล</label></div>
+                            <div class="form-check"><input class="form-check-input" type="radio" name="hospital_preference" value="อื่นๆ" data-other-target="hospital_preference_other" id="hp_other_cb"><label for="hp_other_cb">อื่นๆ:</label></div>
+                            <input type="text" class="form-control other-input d-none" name="hospital_preference_other" id="hospital_preference_other" placeholder="โปรดระบุ">
                          </div>
                     </div>
-                     <div class="question-group">
-                         <label for="self_review" class="form-label">2. (คำถามสุดท้าย) เมื่อเทียบกับเป้าหมายและความกังวลทั้งหมด คุณคิดว่า "ตาข่ายความปลอดภัย" ที่มีอยู่ตอนนี้แข็งแรงพอหรือยัง?</label>
-                         <textarea class="form-control" name="self_review" id="self_review" rows="3" placeholder="เช่น 'คิดว่ายังขาดเรื่องค่ารักษาพยาบาล' หรือ 'กังวลว่าเงินเกษียณจะไม่พอ'..."></textarea>
-                     </div>
+                    <div class="question-group">
+                         <label class="form-label">18. ปัจจุบันคุณมีสวัสดิการหรือประกันอะไรบ้าง?</label>
+                         <div class="choice-selector">
+                             <div class="form-check"><input class="form-check-input" type="checkbox" name="current_coverage" value="ประกันสังคม" id="cc1"><label for="cc1">ประกันสังคม</label></div>
+                             <div class="form-check"><input class="form-check-input" type="checkbox" name="current_coverage" value="ประกันชีวิต" id="cc2"><label for="cc2">ประกันชีวิต</label></div>
+                             <div class="form-check"><input class="form-check-input" type="checkbox" name="current_coverage" value="ประกันอุบัติเหตุ" id="cc3"><label for="cc3">ประกันอุบัติเหตุ</label></div>
+                             <div class="form-check"><input class="form-check-input" type="checkbox" name="current_coverage" value="ประกันสุขภาพ" id="cc4"><label for="cc4">ประกันสุขภาพ</label></div>
+                             <div class="form-check"><input class="form-check-input" type="checkbox" name="current_coverage" value="ประกันโรคร้ายแรง" id="cc5"><label for="cc5">ประกันโรคร้ายแรง</label></div>
+                             <div class="form-check"><input class="form-check-input" type="checkbox" name="current_coverage" value="ประกันชีวิตควบคู่การลงทุน" id="cc6"><label for="cc6">ประกันชีวิตควบคู่การลงทุน</label></div>
+                             <div class="form-check"><input class="form-check-input" type="checkbox" data-other-target="current_coverage_other" id="cc_other_cb"><label for="cc_other_cb">อื่นๆ:</label></div>
+                             <input type="text" class="form-control other-input d-none" name="current_coverage_other" id="current_coverage_other" placeholder="โปรดระบุ">
+                         </div>
+                    </div>
+                    <div class="question-group">
+                        <label class="form-label">19. หากคุณจากไปวันนี้ หรือ ต้องเข้ารพ.รักษาตัวเวลานาน ครอบครัวของคุณจะอยู่ได้นานกี่เดือนโดยไม่ต้องกังวลเรื่องการเงิน (ในกรณีที่คุณเป็นผู้ดูแล)?</label>
+                        <div class="slider-container">
+                             <span class="slider-value" id="family_survival_months_value">5 เดือน</span>
+                             <input type="range" class="form-range" id="family_survival_months" name="family_survival_months" min="0" max="10" step="1" value="5">
+                             <div class="slider-labels"><span>0 เดือน</span><span>10+ เดือน</span></div>
+                        </div>
+                    </div>
+                    <div class="question-group">
+                        <label class="form-label">20. ถ้าคุณตรวจพบโรคร้ายแรงที่ต้องใช้เงินรักษาต่อเนื่อง 2 ล้านบาท คุณคิดว่าวิธีไหนที่จะช่วยจัดการค่าใช้จ่ายก้อนนี้ได้ดีที่สุด โดยไม่กระทบกับแผนชีวิตที่คุณวางไว้?</label>
+                        <div class="choice-selector">
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="critical_illness_plan" value="ใช้เงินเก็บ" id="ci1"><label for="ci1">ใช้เงินเก็บ</label></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="critical_illness_plan" value="กู้ยืมชั่วคราว" id="ci2"><label for="ci2">กู้ยืมชั่วคราว</label></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="critical_illness_plan" value="ขายทรัพย์สิน" id="ci3"><label for="ci3">ขายทรัพย์สิน</label></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" name="critical_illness_plan" value="ใช้ประกันสุขภาพและโรคร้ายแรง" id="ci4"><label for="ci4">ใช้ประกันสุขภาพและโรคร้ายแรง</label></div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" data-other-target="critical_illness_plan_other" id="ci_other_cb"><label for="ci_other_cb">อื่นๆ:</label></div>
+                            <input type="text" class="form-control other-input d-none" name="critical_illness_plan_other" id="critical_illness_plan_other" placeholder="โปรดระบุ">
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Final Result Screen (Chapter 9) (MOVED HERE) -->
-                <div id="chapter-9" class="survey-chapter" data-name="พิมพ์เขียวฉบับสมบูรณ์">
-                    <div id="final-blueprint-container">
-                         <div id="final-loading-spinner">
+                <!-- Personal Info Chapter -->
+                <div id="chapter-9" class="survey-chapter" data-name="ข้อมูลส่วนตัวสำหรับติดต่อกลับ">
+                    <h2 class="chapter-title">Chapter 8: ข้อมูลส่วนตัว</h2>
+                    <p class="chapter-subtitle">ข้อมูลส่วนนี้จะถูกใช้เพื่อการประเมินเบี้ยประกันและการติดต่อกลับเท่านั้น</p>
+                    <div class="question-group">
+                        <label for="user_name" class="form-label">22. ชื่อ (ชื่อเล่น, นามสมมุติ)</label>
+                        <input type="text" class="form-control" name="user_name" id="user_name" required>
+                    </div>
+                    <div class="question-group">
+                        <label for="birth_year" class="form-label">23. ปีเกิด (พ.ศ.)</label>
+                        <input type="number" class="form-control" name="birth_year" id="birth_year" placeholder="เช่น 2539" required>
+                    </div>
+                    <div class="question-group">
+                        <label class="form-label">24. เพศ</label>
+                        <div class="choice-selector">
+                            <div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="gender" id="gender_female" value="หญิง" required><label for="gender_female">หญิง</label></div>
+                            <div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="gender" id="gender_male" value="ชาย"><label for="gender_male">ชาย</label></div>
+                        </div>
+                    </div>
+                    <div class="question-group">
+                        <label for="line_id" class="form-label">25. ID Line ที่ต้องการให้ติดต่อกลับเพื่อรับคำปรึกษา</label>
+                        <input type="text" class="form-control" name="line_id" id="line_id" required>
+                    </div>
+                </div>
+
+                <!-- FINAL REPORT Chapter -->
+                <div id="chapter-10" class="survey-chapter text-center" data-name="รายงานแผนชีวิต">
+                     <div id="final-report-container">
+                         <div id="loading-spinner-final">
                              <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                                  <span class="visually-hidden">Loading...</span>
                              </div>
-                             <p class="mt-3">กำลังวิเคราะห์ข้อมูลเชิงลึกและจัดทำพิมพ์เขียวฉบับสมบูรณ์...</p>
+                             <p class="mt-3">กำลังวิเคราะห์ข้อมูลและสร้างรายงานฉบับสมบูรณ์สำหรับคุณ...</p>
                          </div>
-                        <div id="final-gemini-report" class="d-none gemini-report">
-                            <!-- Final Gemini AI Report will be injected here -->
-                        </div>
+                         <div id="gemini-report-final" class="d-none gemini-report">
+                             <!-- Final Gemini AI Report will be injected here -->
+                         </div>
+                     </div>
+                      <div id="final-cta-section" class="d-none">
+                         <h4 class="text-center">ก้าวต่อไปบนเส้นทางของคุณ</h4>
+                         <p class="text-muted text-center">เลือกเส้นทางที่เหมาะกับคุณเพื่อทำให้พิมพ์เขียวนี้เป็นจริง</p>
+                        <a href="https://line.me/ti/p/yg4Aoo_5LK" class="btn btn-light cta-btn d-flex align-items-center" target="_blank"><i class="fab fa-line fa-2x me-3" style="color: #00B900;"></i><div><div class="cta-title">ปรึกษาเบื้องต้นผ่าน LINE</div><div class="cta-desc">สอบถามข้อสงสัยเพิ่มเติมกับที่ปรึกษา</div></div></a>
+                        <a href="https://calendly.com/first14102539" class="btn btn-light cta-btn d-flex align-items-center" target="_blank"><i class="fas fa-calendar-check fa-2x me-3 text-primary"></i><div><div class="cta-title">นัดเวลาคุยกับที่ปรึกษา</div><div class="cta-desc">วางแผนอย่างจริงจัง (15 นาที ไม่มีค่าใช้จ่าย)</div></div></a>
                     </div>
                 </div>
 
                 <!-- Navigation -->
-                <div id="navigation-wrapper" class="navigation-footer d-flex justify-content-between align-items-center">
+                <div id="navigation-wrapper" class="navigation-footer d-none justify-content-between align-items-center">
                     <button id="prevButton" type="button" class="btn btn-custom btn-prev"><i class="fas fa-arrow-left me-2"></i>ย้อนกลับ</button>
                     <button id="nextButton" type="button" class="btn btn-custom btn-next">ถัดไป<i class="fas fa-arrow-right ms-2"></i></button>
-                    <button id="submitButton" type="submit" class="btn btn-custom btn-next d-none">สร้างพิมพ์เขียวฉบับสมบูรณ์!</button>
+                    <button id="submitButton" type="submit" class="btn btn-custom btn-next d-none">ส่งข้อมูลและสร้างรายงาน</button>
                 </div>
             </form>
-
-            <!-- Final CTA Section (Can be shown at two points) -->
-            <div id="final-cta-section" class="d-none p-4">
-                 <h4 class="text-center">ก้าวต่อไปบนเส้นทางของคุณ</h4>
-                 <p class="text-muted text-center">เลือกเส้นทางที่เหมาะกับคุณเพื่อทำให้พิมพ์เขียวนี้เป็นจริง</p>
-                <a href="javascript:void(0)" id="cta-download" class="btn cta-btn d-flex align-items-center"><i class="fas fa-file-pdf fa-2x me-3 text-danger"></i><div><div class="cta-title">ดาวน์โหลดพิมพ์เขียว (PDF)</div><div class="cta-desc">เก็บสรุปแผนของคุณไว้พิจารณา (ฟังก์ชันเร็วๆ นี้)</div></div></a>
-                <a href="https://line.me/ti/p/yg4Aoo_5LK" id="cta-line" class="btn cta-btn d-flex align-items-center" target="_blank"><i class="fab fa-line fa-2x me-3" style="color: #00B900;"></i><div><div class="cta-title">ปรึกษาเบื้องต้นผ่าน LINE</div><div class="cta-desc">สอบถามข้อสงสัยเพิ่มเติมกับที่ปรึกษา</div></div></a>
-                <a href="https://calendly.com/first14102539" id="cta-calendly" class="btn cta-btn d-flex align-items-center" target="_blank"><i class="fas fa-calendar-check fa-2x me-3 text-primary"></i><div><div class="cta-title">นัดเวลาคุยกับที่ปรึกษา</div><div class="cta-desc">วางแผนอย่างจริงจัง (15 นาที ไม่มีค่าใช้จ่าย)</div></div></a>
-            </div>
         </div>
     </div>
     
-    <!-- Drag and Drop Library -->
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
 
-        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzW6R4RNuY5WamMl5wDjv4ITKLMmQkQgK3x8-C9gw5bCcLV4cyKi30zNqGu698KDtRZtA/exec'; // <-- Make sure this is your correct URL
+        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwV6ifGtOarjDYJQNPUhXFQmfjsFaYIMokXFzZoMd_wg2GjCfbph9DcNYprjbIMi0JvoA/exec'; 
 
-
-        // --- CHAPTER DEFINITIONS ---
+        // Chapter Definitions
         const WELCOME_CHAPTER = 0;
-        const PART_1_START_CHAPTER = 1;
-        const PART_1_END_CHAPTER = 4;
-        const INITIAL_REPORT_CHAPTER = 5;
-        const PART_2_START_CHAPTER = 6;
-        const PART_2_END_CHAPTER = 8;
-        const FINAL_REPORT_CHAPTER = 9;
+        const PART_1_START = 1;
+        const PART_1_END = 4; 
+        const DRAFT_REPORT_CHAPTER = 5;
+        const PART_2_START = 6;
+        const PART_2_END = 9;
+        const FINAL_REPORT_CHAPTER = 10;
+        const TOTAL_FORM_CHAPTERS = 9; // 4 + 4 + 1 for personal info
 
         let currentChapter = WELCOME_CHAPTER;
+        let formDataPart1 = {};
         const chapters = document.querySelectorAll('.survey-chapter');
         const form = document.getElementById('surveyForm');
         
-        // --- BUTTONS ---
+        // --- UI Elements ---
         const startButton = document.getElementById('startButton');
         const prevButton = document.getElementById('prevButton');
         const nextButton = document.getElementById('nextButton');
         const submitButton = document.getElementById('submitButton');
         const continueButton = document.getElementById('continueButton');
         const stopButton = document.getElementById('stopButton');
-
-        // --- UI ELEMENTS ---
+        
         const progressWrapper = document.getElementById('progress-wrapper');
         const navigationWrapper = document.getElementById('navigation-wrapper');
         const progressBar = document.getElementById('progressBar');
         const chapterName = document.getElementById('chapterName');
         const chapterCounter = document.getElementById('chapterCounter');
         
-        const loadingSpinner = document.getElementById('loading-spinner');
-        const geminiReport = document.getElementById('gemini-report');
+        const loadingSpinnerDraft = document.getElementById('loading-spinner-draft');
+        const geminiReportDraft = document.getElementById('gemini-report-draft');
         const deepDiveCta = document.getElementById('deep-dive-cta');
 
-        const finalLoadingSpinner = document.getElementById('final-loading-spinner');
-        const finalGeminiReport = document.getElementById('final-gemini-report');
+        const loadingSpinnerFinal = document.getElementById('loading-spinner-final');
+        const geminiReportFinal = document.getElementById('gemini-report-final');
         const finalCtaSection = document.getElementById('final-cta-section');
-        
-        // --- SLIDER VALUE DISPLAYS ---
-        const wlbSlider = document.getElementById('work_life_balance');
-        const wlbValueDisplay = document.getElementById('wlb-value-display');
-        const efSlider = document.getElementById('emergency_fund');
-        const efValueDisplay = document.getElementById('ef-value-display');
-        
-        let formDataPart1 = {};
-        
-        // --- INITIALIZE SORTABLEJS ---
-        const sortableList = document.getElementById('sortable-priorities');
-        if (sortableList) {
-            new Sortable(sortableList, { animation: 150, ghostClass: 'bg-light' });
-        }
 
-        // --- CORE FUNCTIONS ---
-
+        // --- Core Functions ---
         function updateUI() {
             chapters.forEach((chapter, index) => chapter.classList.toggle('active', index === currentChapter));
             
-            const totalFormChapters = 7; // 4 from part 1, 3 from part 2
-            const isSurveyChapter = (currentChapter >= PART_1_START_CHAPTER && currentChapter <= PART_1_END_CHAPTER) || (currentChapter >= PART_2_START_CHAPTER && currentChapter <= PART_2_END_CHAPTER);
+            const isSurveyChapter = currentChapter >= PART_1_START && currentChapter <= PART_2_END;
 
             if (isSurveyChapter) {
                 progressWrapper.classList.remove('d-none');
-                navigationWrapper.classList.add('d-none');
-                navigationWrapper.classList.remove('d-flex');
+                navigationWrapper.classList.remove('d-none');
                 
-                // Show navigation only for form chapters
-                setTimeout(() => {
-                    navigationWrapper.classList.remove('d-none');
-                    navigationWrapper.classList.add('d-flex');
-                }, 100);
-
-                const activeChapterElement = chapters[currentChapter];
-                const part1ChaptersCompleted = 4;
-                const currentProgressStep = (currentChapter <= PART_1_END_CHAPTER) ? currentChapter : (part1ChaptersCompleted + (currentChapter - PART_2_START_CHAPTER) + 1);
-                
-                const progress = ((currentProgressStep) / totalFormChapters) * 100;
+                const part1Chapters = 4;
+                const currentProgressStep = currentChapter <= PART_1_END ? currentChapter : part1Chapters + (currentChapter - PART_2_START) + 1;
+                const progress = ((currentProgressStep -1) / TOTAL_FORM_CHAPTERS) * 100;
                 
                 progressBar.style.width = `${progress}%`;
-                chapterName.textContent = activeChapterElement.dataset.name;
-                chapterCounter.textContent = `ขั้นตอนที่ ${currentProgressStep} จาก ${totalFormChapters}`;
+                chapterName.textContent = chapters[currentChapter].dataset.name;
+                chapterCounter.textContent = `ขั้นตอนที่ ${currentProgressStep} จาก ${TOTAL_FORM_CHAPTERS}`;
                 
-                const isFirstChapter = currentChapter === PART_1_START_CHAPTER;
-                const isPart1End = currentChapter === PART_1_END_CHAPTER;
-                const isPart2End = currentChapter === PART_2_END_CHAPTER;
+                prevButton.classList.toggle('d-none', currentChapter === PART_1_START);
+                
+                const isEndOfPart1 = currentChapter === PART_1_END;
+                const isEndOfForm = currentChapter === PART_2_END;
 
-                prevButton.classList.toggle('d-none', isFirstChapter);
-                
-                // Button visibility logic
-                nextButton.classList.remove('d-none');
-                submitButton.classList.add('d-none');
-                
-                if (isPart1End) {
-                    nextButton.innerHTML = 'สร้างรายงานฉบับร่าง <i class="fas fa-arrow-right ms-2"></i>';
-                } else if (isPart2End) {
-                    nextButton.classList.add('d-none');
-                    submitButton.classList.remove('d-none');
+                nextButton.classList.toggle('d-none', isEndOfPart1 || isEndOfForm);
+                submitButton.classList.toggle('d-none', !isEndOfForm);
+
+                if(isEndOfPart1) {
+                    // Special button to generate draft report
+                    nextButton.classList.remove('d-none');
+                    nextButton.textContent = 'สร้างรายงานฉบับร่าง';
+                    submitButton.classList.add('d-none');
                 } else {
-                    nextButton.innerHTML = 'ถัดไป <i class="fas fa-arrow-right ms-2"></i>';
+                     nextButton.textContent = 'ถัดไป';
                 }
 
-                navigationWrapper.style.justifyContent = isFirstChapter ? 'flex-end' : 'space-between';
             } else {
                 progressWrapper.classList.add('d-none');
                 navigationWrapper.classList.add('d-none');
-                navigationWrapper.classList.remove('d-flex');
             }
         }
         
@@ -556,28 +486,22 @@
 
         function validateChapter(chapterIndex) {
             const chapter = chapters[chapterIndex];
-            if (!chapter) return false;
-            
-            const questionGroups = chapter.querySelectorAll('.question-group');
+            if (!chapter) return true; 
             let isAllValid = true;
-
+            const questionGroups = chapter.querySelectorAll('.question-group');
             questionGroups.forEach(group => {
-                const inputs = group.querySelectorAll('input[required], textarea[required], select[required]');
-                if (inputs.length === 0) return;
-
+                const requiredInputs = group.querySelectorAll('[required]');
+                if (requiredInputs.length === 0) return;
                 let isGroupValid = false;
-                const input = inputs[0]; // Assume one required question type per group for simplicity
-
-                if (input.type === 'radio') {
-                    const radioGroup = group.querySelectorAll(`input[name="${input.name}"]`);
-                    isGroupValid = Array.from(radioGroup).some(r => r.checked);
-                } else if (input.type === 'checkbox') {
-                    const checkboxGroup = group.querySelectorAll(`input[name="${input.name}"]`);
-                    isGroupValid = Array.from(checkboxGroup).some(cb => cb.checked);
+                const firstInput = requiredInputs[0];
+                if (firstInput.type === 'radio') {
+                    // Check if any radio with the same name is checked
+                    isGroupValid = Array.from(group.querySelectorAll(`input[name="${firstInput.name}"]`)).some(r => r.checked);
+                } else if (firstInput.type === 'checkbox') {
+                    isGroupValid = Array.from(group.querySelectorAll(`input[name="${firstInput.name}"]`)).some(cb => cb.checked);
                 } else {
-                    isGroupValid = input.value.trim() !== '';
+                    isGroupValid = firstInput.value.trim() !== '';
                 }
-
                 group.classList.remove('invalid');
                 if (!isGroupValid) {
                     group.classList.add('invalid');
@@ -590,9 +514,9 @@
         
         function getFormData(start, end) {
             const data = {};
-            for (let i = start; i <= end; i++) {
+            for(let i = start; i <= end; i++) {
                 const chapter = chapters[i];
-                if (!chapter) continue;
+                if(!chapter) continue;
                 const inputs = chapter.querySelectorAll('input, textarea, select');
                 inputs.forEach(input => {
                      const name = input.name;
@@ -603,9 +527,10 @@
                          if (!data[name]) data[name] = [];
                          if (input.checked) data[name].push(input.value);
                      } else if (input.type === 'hidden' && name === 'priorities_order') {
+                         const sortableList = document.getElementById('sortable-priorities');
                          const items = Array.from(sortableList.getElementsByTagName('li'));
                          data[name] = items.map(item => item.textContent.trim());
-                     } else if(input.value) {
+                     } else if (input.value) {
                          data[name] = input.value;
                      }
                 });
@@ -614,95 +539,72 @@
         }
         
         async function fetchReport(payload) {
-            if (!GOOGLE_APPS_SCRIPT_URL || GOOGLE_APPS_SCRIPT_URL.includes('YOUR_GOOGLE_APPS_SCRIPT_URL_HERE')) {
+             if (!GOOGLE_APPS_SCRIPT_URL || GOOGLE_APPS_SCRIPT_URL.includes('YOUR_GOOGLE_APPS_SCRIPT_URL_HERE')) {
                 throw new Error("กรุณาตั้งค่า GOOGLE_APPS_SCRIPT_URL ในไฟล์ index.html ให้ถูกต้อง");
             }
-
-            // This is the updated fetch function to correctly handle CORS with Google Apps Script
             try {
                 const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
                     method: 'POST',
                     cache: 'no-cache',
-                    headers: {
-                        // Use text/plain to avoid a CORS preflight request, which Apps Script doesn't handle.
-                        'Content-Type': 'text/plain;charset=utf-8',
-                    },
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify(payload),
                     redirect: 'follow'
                 });
-
-                if (!response.ok) {
-                    throw new Error(`Server responded with status: ${response.status}`);
-                }
-
-                const result = await response.json(); // Apps Script returns JSON, so we can parse it directly.
-
-                if (result.result === 'success' && result.report) {
-                    return result.report;
-                } else {
-                    throw new Error(result.message || 'Could not generate report from server.');
-                }
+                if (!response.ok) throw new Error(`Server responded with status: ${response.status}`);
+                const result = await response.json();
+                if (result.result === 'success' && result.report) return result.report;
+                throw new Error(result.message || 'Could not generate report from server.');
             } catch (error) {
                 console.error("Fetch Error:", error);
-                throw new Error("เกิดข้อผิดพลาดในการสื่อสารกับเซิร์ฟเวอร์: " + error.message + " กรุณาตรวจสอบการตั้งค่า Deployment ของ Apps Script และ Log");
+                throw new Error("เกิดข้อผิดพลาดในการสื่อสารกับเซิร์ฟเวอร์: " + error.message);
             }
         }
 
         async function submitPart1() {
-            navigateTo(INITIAL_REPORT_CHAPTER);
-            formDataPart1 = getFormData(PART_1_START_CHAPTER, PART_1_END_CHAPTER);
+            navigateTo(DRAFT_REPORT_CHAPTER);
+            formDataPart1 = getFormData(PART_1_START, PART_1_END);
             try {
-                const payload = {
-                    action: 'generateReport',
-                    data: { ...formDataPart1, _formPart: 'part1' }
-                };
-                // For demo/testing without a live URL, uncomment below
-                // const report = "<h3>รายงานฉบับร่าง (ตัวอย่าง)</h3><p>นี่คือตัวอย่างรายงานที่สร้างขึ้นโดยไม่มีการเชื่อมต่อเซิร์ฟเวอร์</p>";
+                const payload = { action: 'generateReport', data: {...formDataPart1, _formPart: 'part1' } };
                 const report = await fetchReport(payload);
-                geminiReport.innerHTML = report;
-                loadingSpinner.classList.add('d-none');
-                geminiReport.classList.remove('d-none');
+                geminiReportDraft.innerHTML = report;
+                loadingSpinnerDraft.classList.add('d-none');
+                geminiReportDraft.classList.remove('d-none');
                 deepDiveCta.classList.remove('d-none');
             } catch (err) {
-                 loadingSpinner.innerHTML = `<div class="text-danger"><i class="fas fa-exclamation-triangle fa-2x"></i><p class="mt-2">ขออภัย, เกิดข้อผิดพลาด</p><small>${err.message}</small></div>`;
+                 loadingSpinnerDraft.innerHTML = `<div class="text-danger"><i class="fas fa-exclamation-triangle fa-2x"></i><p class="mt-2">ขออภัย, เกิดข้อผิดพลาด</p><small>${err.message}</small></div>`;
             }
         }
-
+        
         async function submitFinal() {
             navigateTo(FINAL_REPORT_CHAPTER);
-            const formDataPart2 = getFormData(PART_2_START_CHAPTER, PART_2_END_CHAPTER);
-            const finalData = { ...formDataPart1, ...formDataPart2, _formPart: 'part2' };
+            const formDataPart2 = getFormData(PART_2_START, PART_2_END);
+            const finalData = { ...formDataPart1, ...formDataPart2 };
             try {
-                const payload = {
-                    action: 'generateReport',
-                    data: finalData
-                };
+                const payload = { action: 'generateReport', data: {...finalData, _formPart: 'part2'} };
                 const report = await fetchReport(payload);
-                finalGeminiReport.innerHTML = report;
-                finalLoadingSpinner.classList.add('d-none');
-                finalGeminiReport.classList.remove('d-none');
+                geminiReportFinal.innerHTML = report;
+                loadingSpinnerFinal.classList.add('d-none');
+                geminiReportFinal.classList.remove('d-none');
                 finalCtaSection.classList.remove('d-none');
             } catch (err) {
-                finalLoadingSpinner.innerHTML = `<div class="text-danger"><i class="fas fa-exclamation-triangle fa-2x"></i><p class="mt-2">ขออภัย, เกิดข้อผิดพลาด</p><small>${err.message}</small></div>`;
+                 loadingSpinnerFinal.innerHTML = `<div class="text-danger"><i class="fas fa-exclamation-triangle fa-2x"></i><p class="mt-2">ขออภัย, เกิดข้อผิดพลาด</p><small>${err.message}</small></div>`;
             }
         }
 
-        // --- EVENT LISTENERS ---
-        startButton.addEventListener('click', () => navigateTo(PART_1_START_CHAPTER));
+        // --- Event Listeners ---
+        startButton.addEventListener('click', () => navigateTo(PART_1_START));
         
         prevButton.addEventListener('click', () => {
-            if (currentChapter > WELCOME_CHAPTER) {
-                if (currentChapter === PART_2_START_CHAPTER) {
-                    navigateTo(INITIAL_REPORT_CHAPTER);
-                } else {
-                    navigateTo(currentChapter - 1);
-                }
+             if (currentChapter === PART_2_START) {
+                navigateTo(DRAFT_REPORT_CHAPTER);
+             } else if (currentChapter > PART_1_START) {
+                navigateTo(currentChapter - 1);
             }
         });
         
         nextButton.addEventListener('click', () => {
             if (validateChapter(currentChapter)) {
-                if (currentChapter === PART_1_END_CHAPTER) {
+                if (currentChapter === PART_1_END) {
                     submitPart1();
                 } else {
                     navigateTo(currentChapter + 1);
@@ -712,75 +614,81 @@
         
         form.addEventListener('submit', (event) => {
             event.preventDefault();
-            if (validateChapter(currentChapter)) {
+            if (validateChapter(PART_2_END)) {
                 submitFinal();
             }
         });
-        
-        continueButton.addEventListener('click', () => navigateTo(PART_2_START_CHAPTER));
-        
-        stopButton.addEventListener('click', () => {
-             deepDiveCta.classList.add('d-none');
-             finalCtaSection.classList.remove('d-none');
-        });
-        
-        // --- DYNAMIC LISTENERS ---
-        const dependentsCheckboxes = document.querySelectorAll('input[name="dependents"]');
-        const noDependentsCheckbox = document.getElementById('dep5');
-        
-        dependentsCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', (e) => {
-                const hasChildrenCheckbox = document.getElementById('dep3');
-                const childrenQuestions = document.getElementById('children_questions');
 
-                if (e.target === noDependentsCheckbox && noDependentsCheckbox.checked) {
-                    // If "no dependents" is checked, uncheck all others
-                    dependentsCheckboxes.forEach(cb => {
-                        if (cb !== noDependentsCheckbox) cb.checked = false;
-                    });
-                } else if (e.target !== noDependentsCheckbox && e.target.checked) {
-                    // If any other is checked, uncheck "no dependents"
-                    noDependentsCheckbox.checked = false;
-                }
-                
-                // Toggle children questions visibility
-                childrenQuestions.classList.toggle('d-none', !hasChildrenCheckbox.checked);
-            });
+        continueButton.addEventListener('click', () => navigateTo(PART_2_START));
+        stopButton.addEventListener('click', () => {
+            deepDiveCta.classList.add('d-none');
+            finalCtaSection.classList.remove('d-none');
         });
-        
-        const noFamilyHistoryCheckbox = document.getElementById('fh1');
-        const familyHistoryCheckboxes = document.querySelectorAll('input[name="family_history"]');
-        familyHistoryCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', e => {
-                if (e.target === noFamilyHistoryCheckbox && noFamilyHistoryCheckbox.checked) {
-                     familyHistoryCheckboxes.forEach(cb => {
-                        if (cb !== noFamilyHistoryCheckbox) cb.checked = false;
-                    });
-                } else if (e.target !== noFamilyHistoryCheckbox && e.target.checked) {
-                    noFamilyHistoryCheckbox.checked = false;
-                }
-            });
-        });
-        
-        const noCoverageCheckbox = document.getElementById('cc6');
-        const coverageCheckboxes = document.querySelectorAll('input[name="current_coverage"]');
-        coverageCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', e => {
-                if (e.target === noCoverageCheckbox && noCoverageCheckbox.checked) {
-                     coverageCheckboxes.forEach(cb => {
-                        if (cb !== noCoverageCheckbox) cb.checked = false;
-                    });
-                } else if (e.target !== noCoverageCheckbox && e.target.checked) {
-                    noCoverageCheckbox.checked = false;
+
+        // --- Dynamic UI Listeners ---
+
+        // Toggle 'other' text inputs
+        document.querySelectorAll('input[data-other-target]').forEach(cb => {
+            cb.addEventListener('change', () => {
+                const otherInput = document.getElementById(cb.dataset.otherTarget);
+                if (otherInput) {
+                    otherInput.classList.toggle('d-none', !cb.checked);
+                    if(cb.checked) {
+                        otherInput.focus();
+                        if(cb.type === 'radio') {
+                           otherInput.setAttribute('required', 'required');
+                        }
+                    } else {
+                         if(cb.type === 'radio') {
+                           otherInput.removeAttribute('required');
+                        }
+                    }
                 }
             });
         });
         
-        wlbSlider.addEventListener('input', () => { wlbValueDisplay.textContent = wlbSlider.value; });
-        efSlider.addEventListener('input', () => { efValueDisplay.textContent = efSlider.value; });
+        // Conditional question for goal progress
+        document.querySelectorAll('input[name="goal_started"]').forEach(radio => {
+            radio.addEventListener('change', () => {
+                const progressGroup = document.getElementById('goal_progress_group');
+                const progressInput = document.getElementById('goal_progress');
+                if (document.getElementById('goal_started_yes').checked) {
+                    progressGroup.classList.remove('d-none');
+                    progressInput.setAttribute('required', 'required');
+                } else {
+                    progressGroup.classList.add('d-none');
+                    progressInput.removeAttribute('required');
+                }
+            });
+        });
         
-        // Initial setup
-        updateUI();
+        // Slider value display updaters
+        function setupSlider(sliderId, displayId, unit = '') {
+            const slider = document.getElementById(sliderId);
+            const display = document.getElementById(displayId);
+            if (!slider || !display) return;
+            const updateValue = () => {
+                let value = slider.value;
+                if (sliderId === 'emergency_fund' && value === '10') value = '10+';
+                if (sliderId === 'family_survival_months' && value === '10') value = '10+';
+                display.textContent = `${value}${unit}`;
+            };
+            slider.addEventListener('input', updateValue);
+            updateValue(); // Initial call
+        }
+
+        setupSlider('mental_state', 'mental_state_value');
+        setupSlider('goal_progress', 'goal_progress_value', '%');
+        setupSlider('emergency_fund', 'emergency_fund_value', ' เดือน');
+        setupSlider('family_survival_months', 'family_survival_months_value', ' เดือน');
+
+        // Initialize SortableJS
+        const sortableList = document.getElementById('sortable-priorities');
+        if (sortableList) {
+            new Sortable(sortableList, { animation: 150, ghostClass: 'bg-light' });
+        }
+        
+        updateUI(); // Initial UI setup
     });
     </script>
 </body>
